@@ -14,6 +14,13 @@
  *= require_self
  */
 
+ $grid-gutter-width: 30px;
+ $container-desktop: (780px + $grid-gutter-width);
+ $container-large-desktop: $container-desktop;
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
  body {
    background-color: #34455f;
  }
@@ -27,3 +34,7 @@
    padding: 10px 20px;
    margin-bottom: 40px;
  }
+
+.remove-participant {
+  margin-top: 30px;
+}

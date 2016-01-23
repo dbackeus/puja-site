@@ -1,0 +1,46 @@
+<div class="container">
+  <section>
+    <h2>Puja Registration</h2>
+    <%= simple_form_for @registration do |f| %>
+      <h3>Contact information</h3>
+      <%= f.input :email, hint: "Booking confirmation and payment link will be sent to this email." %>
+      <%= f.input :phone, hint: "A phone number which we can use to reach before and during the puja." %>
+      <%= country_select_with_priority f %>
+      <%= f.input :accomodation, as: :radio_buttons, collection: ["Cabin", "Hostel", "Sleeping Tent"], include_blank: false %>
+      <hr>
+      <h3>Participants</h3>
+      <div id="participants">
+        <%= f.fields_for :participants do |ff| %>
+          <div class="duplicatable_nested_form">
+            <div class="row">
+              <div class="col-sm-4">
+                <%= ff.input :name %>
+              </div>
+              <div class="col-sm-3">
+                <%= ff.input :gender,
+                  as: :select,
+                  collection: ["Male", "Female"],
+                  include_blank: false
+                %>
+              </div>
+              <div class="col-sm-3">
+                <%= ff.input :age,
+                  as: :select,
+                  collection: { adult: "Adult", child: "Child (12 or younger)", yuva: "Yuva (13-21)" }.invert,
+                  include_blank: false
+                %>
+              </div>
+              <div class="col-sm-2">
+                <%= link_to "remove", "#", class: "btn btn-warning btn-xs remove-participant" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <a href="#" class="btn btn-warning btn-sm" id="add-participant-button"><%= glyph_icon("plus") %> Add participant</a>
+      <hr>
+      <%= f.input :transport, as: :boolean, label: "Need transport from the airport" %>
+      <%= f.button :submit, "Register", class: "btn-primary" %>
+    <% end %>
+  </section>
+</div>
