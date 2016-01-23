@@ -147,6 +147,9 @@ GEM
     rake (10.5.0)
     redis (3.2.2)
     ref (2.0.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     spring (1.6.2)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -194,6 +197,7 @@ DEPENDENCIES
   pg
   puma
   rails (>= 5.0.0.beta1, < 5.1)
+  simple_form
   spring
   therubyracer
   turbolinks

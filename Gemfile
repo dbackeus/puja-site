@@ -6,6 +6,7 @@ gem "less-rails"
 gem "pg"
 gem "puma"
 gem "rails", ">= 5.0.0.beta1", "< 5.1"
+gem "simple_form"
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
 gem "twitter-bootstrap-rails"
