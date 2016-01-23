@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   background-color: #34455f;
+ }
+
+ .banner-image {
+   width: 100%;
+ }
+
+ section {
+   background-color: white;
+   padding: 10px 20px;
+   margin-bottom: 40px;
+ }
