@@ -1,0 +1,57 @@
+<%= simple_form_for registration do |f| %>
+  <%= f.input :registration_type, as: :hidden %>
+  <h3>Contact information</h3>
+  <% if registration.single? %>
+    <%= f.fields_for :participants do |ff| %>
+
+      <%= ff.input :name %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= ff.input :gender, as: :select, collection: gender_options, include_blank: false %>
+        </div>
+        <div class="col-sm-6">
+          <%= ff.input :age, as: :select, collection: age_options, include_blank: false %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= f.input :email, hint: "Booking confirmation and payment link will be sent to this email." %>
+  <%= f.input :phone, hint: "A phone number which we can use before and during the puja." %>
+  <%= country_select_with_priority f %>
+  <hr>
+  <h3>Choice of Accommodation</h3>
+  <p>We have three options for accommodation. Cabins, hostel or tents with varying costs. Food from Friday dinner to Monday breakfast is included in the in all three options.</p>
+  <%= f.input :accommodation,
+    as: :radio_buttons,
+    collection: accommodation_options,
+    label: false
+  %>
+  <% if registration.group? %>
+    <hr>
+    <h3>Participants</h3>
+    <div id="participants">
+      <%= f.fields_for :participants do |ff| %>
+        <div class="duplicatable_nested_form">
+          <div class="row">
+            <div class="col-sm-4">
+              <%= ff.input :name %>
+            </div>
+            <div class="col-sm-3">
+              <%= ff.input :gender, as: :select, collection: gender_options, include_blank: false %>
+            </div>
+            <div class="col-sm-3">
+              <%= ff.input :age, as: :select, collection: age_options, include_blank: false %>
+            </div>
+            <div class="col-sm-2">
+              <%= link_to "remove", "#", class: "btn btn-warning btn-xs remove-participant" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <a href="#" class="btn btn-warning btn-sm" id="add-participant-button"><%= glyph_icon("plus") %> Add participant</a>
+  <% end %>
+  <hr>
+  <%= f.input :transport, as: :boolean, label: "Need transport from the airport" %>
+  <%= f.button :submit, "Register", class: "btn-primary" %>
+<% end %>

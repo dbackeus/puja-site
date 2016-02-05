@@ -1,17 +1,31 @@
 class RegistrationsController < ApplicationController
-  def new
-    @registration = Registration.new
-    @registration.participants.build # first can be filled in
+  def single
+    @registration = Registration.new(registration_type: "single")
+    @registration.participants.build
+  end
+
+  def group
+    @registration = Registration.new(registration_type: "group")
+    @registration.participants.build
+    @registration.participants.build
     @registration.participants.build # last will be removed
+  end
+
+  def new
   end
 
   def create
     @registration = Registration.new(registration_params)
 
     if @registration.save
+      redirect_to root_path
     else
-      @registration.participants.build # last will be removed
-      render :new
+      if @registration.registration_type == "group"
+        @registration.participants.build # last will be removed
+        render :group
+      else
+        render :single
+      end
     end
   end
 

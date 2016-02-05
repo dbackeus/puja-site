@@ -6,6 +6,14 @@ class Registration < ApplicationRecord
   validates_presence_of :email
   validates_presence_of :phone
   validates_presence_of :country
+  validates_presence_of :accommodation
+  validates_presence_of :registration_type
 
-  attr_accessor :accomodation
+  def single?
+    registration_type == "single"
+  end
+
+  def group?
+    registration_type == "group"
+  end
 end
