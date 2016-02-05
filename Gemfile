@@ -9,7 +9,7 @@ gem "jquery-rails"
 gem "less-rails"
 gem "pg"
 gem "puma"
-gem "rails", ">= 5.0.0.beta1", "< 5.1"
+gem "rails", ">= 5.0.0.beta2"
 gem "sass-rails"
 gem "simple_form"
 gem "therubyracer", platforms: :ruby
