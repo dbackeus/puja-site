@@ -23,6 +23,11 @@ group :development, :test do
 end
 
 group :development do
+  gem "guard", require: false
+  gem "guard-minitest", require: false
+  gem "guard-pow", require: false
+  gem "terminal-notifier-guard", require: false
+  gem "rb-fsevent"
   gem "spring"
   gem "web-console", "~> 3.0"
 end
