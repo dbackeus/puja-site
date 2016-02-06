@@ -20,4 +20,19 @@ class RegistrationTest < ActiveSupport::TestCase
       refute_includes registration.errors[:phone], "Must be a valid international phone number (including country code denoted by + or 00)"
     end
   end
+
+  test "#extra" do
+    assert_equal 0, Registration.new.extra
+
+    registration = Registration.new(accommodation: "cabin")
+    registration.participants.build
+
+    assert_equal 30, registration.extra
+
+    registration.participants.build
+
+    assert_equal 60, registration.extra
+
+    assert_equal 108, Registration.new(extra: 108).extra
+  end
 end
