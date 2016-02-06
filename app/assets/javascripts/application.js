@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.money_field
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .

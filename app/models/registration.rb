@@ -12,11 +12,47 @@ class Registration < ApplicationRecord
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
 
+  attr_accessor :extra
+
+  def total_cost
+    minimum_cost + extra.to_i
+  end
+
+  def total_cost_in_cents
+    total_cost * 100
+  end
+
+  def minimum_cost
+    participants.length * cost_per_participant
+  end
+
+  def cost_per_participant
+    accommodation_cost[accommodation]
+  end
+
+  def extra
+    participants.length * 30
+  end
+
   def single?
     registration_type == "single"
   end
 
   def group?
     registration_type == "group"
+  end
+
+  def paid?
+    false
+  end
+
+  private
+
+  def accommodation_cost
+    {
+      "cabin" => 108,
+      "hostel" => 120,
+      "tent" => 50,
+    }
   end
 end

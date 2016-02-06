@@ -1,0 +1,85 @@
+<% @page_title = "Your Registration" %>
+
+<div class="container">
+  <section>
+    <%= link_to "<- Back to main page", root_path %>
+
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success">
+        <%= flash[:notice].html_safe %>
+      </div>
+    <% end %>
+
+    <h2>Your Registration</h2>
+
+    <% if @registration.paid? %>
+
+    <% else %>
+      <p>
+        Please note that your reservation will need
+        to be paid before it is confirmed. If you have requested accommodation
+        in the cabins or hostel the places left may run out if you take too long
+        to pay.
+      </p>
+      <p>
+        If you want to pay later you can find the link back to this page in the
+        confirmation email we sent to you.
+      </p>
+
+      <!-- <div class="text-center">
+        <%= link_to "Go to payment page!", pay_registration_path(@registration), class: "btn btn-primary btn-lg" %>
+      </div> -->
+
+      <hr>
+      <h3>Payment</h3>
+      <p>
+        To cover the cost of the puja we have decided to use a "pay what you want"
+        model, while making sure we can at least cover the minimum cost of participation.
+      </p>
+      <p>
+        The minimum cost includes accomodation and food for the weekend.
+        However there are many other costs for organizing the puja,
+        totalling about 10 000 EUR. To cover this we ask that you add a donation
+        on top of the minimum.
+      </p>
+      <p>
+        We hope this way
+        those who do not have a steady income, such as students, or those coming
+        from countries with a weaker economy can still come to enjoy the puja,
+        while those who earn more can excercise their generosity from their hearts.
+      </p>
+      <%= simple_form_for @registration do |f| %>
+        <%= f.input :minimum_cost, disabled: true, label: "Minimum cost", hint: "Based on #{@registration.cost_per_participant} EUR per participant." %>
+        <%= f.input :extra, label: "Extra (pay what you want)", hint: "Suggested extra is 30 EUR per participant, please change this to whatever works for you." %>
+        <p>
+          <strong>Total</strong><br>
+          <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
+        </p>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <span
+          id="stripe-configuration"
+          data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+          data-image="<%= asset_path "vishwa-nirmala-dharma.jpg" %>"
+          data-email="<%= @registration.email %>"
+        ></script>
+        <%= link_to "Pay now!", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
+      <% end %>
+    <% end %>
+
+    <hr>
+    <h3>Contact information</h3>
+    <% %i[email phone country].each do |attribute| %>
+      <p>
+        <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
+        <%= @registration.send(attribute) %>
+      </p>
+    <% end %>
+    <hr>
+    <h3>Participants</h3>
+    <ul>
+      <% @registration.participants.each do |participant| %>
+        <%= participant.name.titleize %> - <%= participant.gender.titleize %> - <%= participant.age.titleize %>
+      <% end %>
+    </ul>
+  </section>
+</div>
