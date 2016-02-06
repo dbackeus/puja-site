@@ -1,12 +1,15 @@
 class Registration < ApplicationRecord
-  has_many :participants
+  EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  PHONE_REGEX = /\A\+|00/ # starts with country code
+
+  has_many :participants, inverse_of: :registration, dependent: :delete_all
 
   accepts_nested_attributes_for :participants
 
-  validates_presence_of :email
-  validates_presence_of :phone
+  validates_format_of :email, with: EMAIL_REGEX, message: "Must be a valid email address."
+  validates_format_of :phone, with: PHONE_REGEX, message: "Must be a valid international phone number (including country code denoted by + or 00)"
   validates_presence_of :country
-  validates_presence_of :accommodation
+  validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
 
   def single?

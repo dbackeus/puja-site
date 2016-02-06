@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  gender: MyString
-  age: MyString
-  registration: 
+  name: Simon Band
+  gender: male
+  age: adult
+  registration: pending
 
 two:
-  name: MyString
-  gender: MyString
-  age: MyString
-  registration: 
+  name: Emma Turley
+  gender: female
+  age: adult
+  registration: paid

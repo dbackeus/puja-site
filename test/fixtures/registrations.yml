@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  email: MyString
-  phone: MyString
+pending:
+  email: foo@bar.com
+  phone: +46 555-1234567
   transport: false
-  country: MyString
+  country: Sweden
+  accommodation: cabin
+  registration_type: group
 
-two:
-  email: MyString
-  phone: MyString
+paid:
+  email: lol@bar.com
+  phone: 0034 555 53 2434
   transport: false
-  country: MyString
+  country: Netherlands
+  accommodation: tent
+  registration_type: group
