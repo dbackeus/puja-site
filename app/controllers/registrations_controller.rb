@@ -32,6 +32,36 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def pay
+    @registration = Registration.find(params[:id])
+
+    customer = Stripe::Customer.create(
+      email: @registration.email,
+      source: registration_params[:stripe_token],
+    )
+
+    charge = Stripe::Charge.create(
+      customer: customer.id,
+      amount: @registration.total_cost_in_cents,
+      description: "Payment for registration: #{@registration.to_param}",
+      currency: "EUR",
+    )
+
+    @registration.update_attributes!(
+      stripe_token: registration_params[:stripe_token],
+      stripe_customer_id: customer.id,
+      stripe_charge_id: charge.id,
+      paid: true,
+    )
+
+    redirect_to registration_path(@registration), notice: "Your payment was successfully charged, thank you!"
+  rescue Stripe::CardError => e
+    Rails.logger.warn "Payment failed:"
+    Rails.logger.warn e.message
+    @registration.update_attribute(:stripe_token, registration_params[:stripe_token])
+    redirect_to registration_path(@registration), error: e.message
+  end
+
   private
 
   def registration_params

@@ -9,12 +9,14 @@
         <%= flash[:notice].html_safe %>
       </div>
     <% end %>
+    <% if flash[:error].present? %>
+      <div class="alert alert-danger">
+        <%= flash[:error].html_safe %>
+      </div>
+    <% end %>
 
     <h2>Your Registration</h2>
-
-    <% if @registration.paid? %>
-
-    <% else %>
+    <% unless @registration.paid? %>
       <p>
         Please note that your reservation will need
         to be paid before it is confirmed. If you have requested accommodation
@@ -25,8 +27,35 @@
         If you want to pay later you can find the link back to this page in the
         confirmation email we sent to you.
       </p>
-
       <hr>
+    <% end %>
+    <div class="row">
+      <div class="col-xs-6">
+        <h3>Summary</h3>
+        <% %i[email phone].each do |attribute| %>
+          <p>
+            <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
+            <%= @registration.send(attribute) %>
+          </p>
+        <% end %>
+        <p>
+          <strong><%= Registration.human_attribute_name("accommodation") %></strong><br>
+          <%= @registration.accommodation.titleize %>
+        </p>
+      </div>
+      <div class="col-xs-6">
+        <h3>Participants</h3>
+        <% @registration.participants.each do |participant| %>
+          <p>
+            <%= participant.name.titleize %> (<%= participant.age %>, <%= participant.gender %>)
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <% if @registration.paid? %>
+
+    <% else %>
       <h3>Payment</h3>
       <p>
         To cover the cost of the puja we have decided to use a "pay what you want"
@@ -35,8 +64,7 @@
       <p>
         The minimum cost includes accomodation and food for the weekend.
         However there are many other costs for organizing the puja,
-        totalling about 10 000 EUR. To cover this we ask that you add a donation
-        on top of the minimum.
+        totalling about 10 000 EUR. To cover this need your help through donations.
       </p>
       <p>
         We hope this way
@@ -44,9 +72,16 @@
         from countries with a weaker economy can still come to enjoy the puja,
         while those who earn more can excercise their generosity from their hearts.
       </p>
-      <%= simple_form_for @registration do |f| %>
-        <%= f.input :minimum_cost, disabled: true, label: "Minimum cost", hint: "Based on #{@registration.cost_per_participant} EUR per participant." %>
-        <%= f.input :extra, label: "Extra (pay what you want)", hint: "Suggested extra is 30 EUR per participant, please change this to whatever works for you." %>
+      <%= simple_form_for @registration, url: pay_registration_path(@registration), html: { id: "payment-form" } do |f| %>
+        <%= f.input :stripe_token, as: :hidden %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= f.input :minimum_cost, disabled: true, label: "Minimum cost", hint: "Based on €#{@registration.cost_per_participant} per participant." %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :extra, label: "Extra (pay what you want)", hint: "Feel free to change the suggested €30 per participant" %>
+          </div>
+        </div>
         <p>
           <strong>Total</strong><br>
           <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
@@ -54,28 +89,14 @@
         <script src="https://checkout.stripe.com/checkout.js"></script>
         <span
           id="stripe-configuration"
-          data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+          data-key="<%= ENV.fetch('STRIPE_PUBLISHABLE_KEY') %>"
           data-image="<%= asset_path "vishwa-nirmala-dharma.jpg" %>"
           data-email="<%= @registration.email %>"
-        ></script>
-        <%= link_to "Pay now!", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
+        ></span>
+        <%= link_to "Pay with credit card", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
       <% end %>
     <% end %>
 
-    <hr>
-    <h3>Contact information</h3>
-    <% %i[email phone country].each do |attribute| %>
-      <p>
-        <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
-        <%= @registration.send(attribute) %>
-      </p>
-    <% end %>
-    <hr>
-    <h3>Participants</h3>
-    <ul>
-      <% @registration.participants.each do |participant| %>
-        <%= participant.name.titleize %> - <%= participant.gender.titleize %> - <%= participant.age.titleize %>
-      <% end %>
-    </ul>
+
   </section>
 </div>

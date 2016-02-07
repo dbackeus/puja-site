@@ -67,6 +67,8 @@ GEM
       sort_alphabetical (~> 1.0)
     currencies (0.4.2)
     debug_inspector (0.0.2)
+    domain_name (0.5.20160128)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.1.0)
     dotenv-rails (2.1.0)
       dotenv (= 2.1.0)
@@ -93,6 +95,8 @@ GEM
       minitest (>= 3.0)
     guard-pow (2.0.0)
       guard (~> 2.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     i18n_data (0.7.0)
     jquery-rails (4.1.0)
@@ -121,6 +125,7 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     nenv (0.2.0)
+    netrc (0.11.0)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -175,6 +180,10 @@ GEM
     rb-inotify (0.9.6)
       ffi (>= 0.5.0)
     ref (2.0.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     sass (3.4.21)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -197,6 +206,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (1.35.1)
+      json (~> 1.8.1)
+      rest-client (~> 1.4)
     terminal-notifier-guard (1.6.4)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -211,6 +223,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.2)
     unicode_utils (1.4.0)
     web-console (3.1.1)
       activemodel (>= 4.2)
@@ -244,6 +259,7 @@ DEPENDENCIES
   sass-rails
   simple_form
   spring
+  stripe
   terminal-notifier-guard
   therubyracer
   turbolinks

@@ -10,6 +10,11 @@ pay = ->
   handler.open
     amount: getTotalAmount() * 100
 
+onReceivePaymentToken = (token) ->
+  $("#registration_stripe_token").val(token.id)
+  $("#pay-button").attr("disabled", true)
+  $("#payment-form").submit()
+
 initiateStripe = ->
   configuration = $("#stripe-configuration").data()
 
@@ -19,6 +24,7 @@ initiateStripe = ->
     image: configuration.image
     email: configuration.email
     currency: "EUR"
+    token: onReceivePaymentToken
 
   $(window).on "popstate", ->
     handler.close()

@@ -14,6 +14,7 @@ gem "puma"
 gem "rails", ">= 5.0.0.beta2"
 gem "sass-rails"
 gem "simple_form"
+gem "stripe"
 gem "therubyracer", platforms: :ruby
 gem "turbolinks"
 gem "uglifier", ">= 1.3.0"
