@@ -30,6 +30,7 @@ group :development do
   gem "rb-fsevent"
   gem "spring"
   gem "web-console", "~> 3.0"
+  gem "quiet_assets"
 end
 
 group :production do
