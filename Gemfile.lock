@@ -120,6 +120,10 @@ GEM
     lumberjack (1.0.10)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailgun_rails (0.8.0)
+      actionmailer (>= 3.2.13)
+      json (>= 1.7.7)
+      rest-client (>= 1.6.7)
     method_source (0.8.2)
     mime-types (2.99)
     mini_portile2 (2.0.0)
@@ -250,6 +254,7 @@ DEPENDENCIES
   guard-pow
   jquery-rails
   less-rails
+  mailgun_rails
   pg
   puma
   quiet_assets

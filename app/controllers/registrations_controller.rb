@@ -21,7 +21,9 @@ class RegistrationsController < ApplicationController
     @registration = Registration.new(registration_params)
 
     if @registration.save
-      redirect_to registration_path(@registration), notice: "<strong>Thank you for your registration!</strong>"
+      RegistrationMailer.registered(@registration).deliver
+
+      redirect_to registration_path(@registration), notice: "<strong>Thank you for your registration!</strong> An email confirmation has been sent to <strong>#{@registration.email}</strong>."
     else
       if @registration.registration_type == "group"
         @registration.participants.build # last will be removed
@@ -54,7 +56,9 @@ class RegistrationsController < ApplicationController
       paid: true,
     )
 
-    redirect_to registration_path(@registration), notice: "Your payment was successfully charged, thank you!"
+    RegistrationMailer.paid(@registration).deliver
+
+    redirect_to registration_path(@registration), notice: "Your payment was successfully charged! A receipt has been sent to <strong>#{@registration.email}</strong>."
   rescue Stripe::CardError => e
     Rails.logger.warn "Payment failed:"
     Rails.logger.warn e.message
