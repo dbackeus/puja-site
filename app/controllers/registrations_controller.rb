@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   def show
-    @registration = Registration.find(params[:id])
+    @registration = Registration.find_by_token!(params[:id])
   end
 
   def single
@@ -35,28 +35,30 @@ class RegistrationsController < ApplicationController
   end
 
   def pay
-    @registration = Registration.find(params[:id])
+    @registration = Registration.find_by_token!(params[:id])
 
-    customer = Stripe::Customer.create(
-      email: @registration.email,
-      source: registration_params[:stripe_token],
-    )
+    unless @registration.paid?
+      customer = Stripe::Customer.create(
+        email: @registration.email,
+        source: registration_params[:stripe_token],
+      )
 
-    charge = Stripe::Charge.create(
-      customer: customer.id,
-      amount: @registration.total_cost_in_cents,
-      description: "Payment for registration: #{@registration.to_param}",
-      currency: "EUR",
-    )
+      charge = Stripe::Charge.create(
+        customer: customer.id,
+        amount: @registration.total_cost_in_cents,
+        description: "Payment for registration: #{@registration.to_param}",
+        currency: "EUR",
+      )
 
-    @registration.update_attributes!(
-      stripe_token: registration_params[:stripe_token],
-      stripe_customer_id: customer.id,
-      stripe_charge_id: charge.id,
-      paid: true,
-    )
+      @registration.update_attributes!(
+        stripe_token: registration_params[:stripe_token],
+        stripe_customer_id: customer.id,
+        stripe_charge_id: charge.id,
+        paid: true,
+      )
 
-    RegistrationMailer.paid(@registration).deliver
+      RegistrationMailer.paid(@registration).deliver
+    end
 
     redirect_to registration_path(@registration), notice: "Your payment was successfully charged! A receipt has been sent to <strong>#{@registration.email}</strong>."
   rescue Stripe::CardError => e

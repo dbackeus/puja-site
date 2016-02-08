@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207171425) do
+ActiveRecord::Schema.define(version: 20160208201440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20160207171425) do
     t.string   "stripe_customer_id"
     t.string   "stripe_charge_id"
     t.string   "stripe_token"
+    t.string   "token"
+    t.index ["token"], name: "index_registrations_on_token", unique: true, using: :btree
   end
 
   add_foreign_key "participants", "registrations"

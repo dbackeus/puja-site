@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class RegistrationTest < ActiveSupport::TestCase
+  test "token generation" do
+    registration = Registration.new
+
+    registration.validate
+
+    assert_equal 32, registration.token.length
+  end
+
   ["", "0760 47 83 86"].each do |number|
     test "doesn't accept: '#{number}' as phone number" do
       registration = Registration.new(phone: number)
@@ -34,5 +42,11 @@ class RegistrationTest < ActiveSupport::TestCase
     assert_equal 60, registration.extra
 
     assert_equal 108, Registration.new(extra: 108).extra
+  end
+
+  test "#to_param" do
+    registration = Registration.new(token: "foo")
+
+    assert_equal "foo", registration.to_param
   end
 end

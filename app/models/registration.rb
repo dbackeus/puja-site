@@ -6,6 +6,8 @@ class Registration < ApplicationRecord
 
   accepts_nested_attributes_for :participants
 
+  before_validation :generate_token, on: :create, unless: :token
+
   validates_format_of :email, with: EMAIL_REGEX, message: "Must be a valid email address."
   validates_format_of :phone, with: PHONE_REGEX, message: "Must be a valid international phone number (including country code denoted by + or 00)"
   validates_presence_of :country
@@ -40,6 +42,10 @@ class Registration < ApplicationRecord
     registration_type == "group"
   end
 
+  def to_param
+    token
+  end
+
   private
 
   def accommodation_cost
@@ -48,5 +54,13 @@ class Registration < ApplicationRecord
       "hostel" => 120,
       "tent" => 50,
     }
+  end
+
+  def generate_token
+    self.token = SecureRandom.hex
+
+    while Registration.where(token: token).exists?
+      self.token = SecureRandom.hex
+    end
   end
 end
