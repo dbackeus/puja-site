@@ -31,7 +31,7 @@
     <% end %>
     <div class="row">
       <div class="col-xs-6">
-        <h3>Summary</h3>
+        <h3>Details</h3>
         <% %i[email phone].each do |attribute| %>
           <p>
             <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
@@ -56,7 +56,7 @@
     <% if @registration.paid? %>
 
     <% else %>
-      <h3>Payment</h3>
+      <h2>Payment</h2>
       <p>
         To cover the cost of the puja we have decided to use a "pay what you want"
         model, while making sure we can at least cover the minimum cost of participation.
@@ -83,8 +83,8 @@
         <tbody>
           <% @registration.participants.each do |participant| %>
             <tr>
-              <td><%= participant.name %></td>
-              <td><%= participant.age %></td>
+              <td><%= participant.name.titleize %></td>
+              <td><%= participant.age.titleize %></td>
               <td>€<%= @registration.cost_per_participant %></td>
             </tr>
           <% end %>
