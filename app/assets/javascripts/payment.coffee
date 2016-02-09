@@ -42,7 +42,7 @@ ready = ->
   $("#registration_minimum_cost, #registration_extra").moneyField symbol: "€"
 
   $("#registration_extra").keyup (e) ->
-    $("#total-cost").html("€#{getTotalAmount()}")
+    $("#total-cost").html("€#{getTotalAmount()}.00")
 
 $(document).ready(ready)
 $(document).on("page:load", ready)

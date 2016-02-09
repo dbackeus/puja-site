@@ -16,17 +16,17 @@ module ApplicationHelper
   def accommodation_options
     cabin_label = radio_with_hint(
       "Cabin",
-      "Enjoy the comfort of the lovely cabins located near the sea. Each cabin can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No sleeping bags or sheets required.<br>Cost: 108 EUR per person.",
+      "Enjoy the comfort of the lovely cabins located near the sea. Each cabin can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No sleeping bags or sheets required.<br>Cost: €108 per person.",
       places_left: 88,
     )
     hostel_label = radio_with_hint(
       "Hostel",
-      "Get a bed in one of the 11 available double rooms in the newly renovated hostel. No sleeping bags or sheets required.<br>Cost: 120 EUR per person.",
+      "Get a bed in one of the 11 available double rooms in the newly renovated hostel. No sleeping bags or sheets required.<br>Cost: €120 per person.",
       places_left: 25,
     )
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
-      "We will erect collective sleeping tents hosting around 100 yogis each. They will be heated so should be comfortable even if the nights get cold. Don't forget to bring sleeping bags and sleeping mats. If you prefer you can also bring your own tent.<br>Cost: 55 EUR per person.",
+      "We will erect collective sleeping tents hosting around 100 yogis each. They will be heated so should be comfortable even if the nights get cold. Don't forget to bring sleeping bags and sleeping mats. If you prefer you can also bring your own tent.<br>Cost: €55 per person.",
     )
 
     {

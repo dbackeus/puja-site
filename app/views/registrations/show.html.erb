@@ -72,16 +72,28 @@
         from countries with a weaker economy can still come to enjoy the puja,
         while those who earn more can excercise their generosity from their hearts.
       </p>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age group</th>
+            <th>Base cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @registration.participants.each do |participant| %>
+            <tr>
+              <td><%= participant.name %></td>
+              <td><%= participant.age %></td>
+              <td>€<%= @registration.cost_per_participant %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       <%= simple_form_for @registration, url: pay_registration_path(@registration), html: { id: "payment-form" } do |f| %>
         <%= f.input :stripe_token, as: :hidden %>
-        <div class="row">
-          <div class="col-xs-6">
-            <%= f.input :minimum_cost, disabled: true, label: "Minimum cost", hint: "Based on €#{@registration.cost_per_participant} per participant." %>
-          </div>
-          <div class="col-xs-6">
-            <%= f.input :extra, label: "Extra (pay what you want)", hint: "Feel free to change the suggested €30 per participant" %>
-          </div>
-        </div>
+        <%= f.input :minimum_cost, as: :hidden %>
+        <%= f.input :extra, as: :integer, label: "Extra (pay what you want)", hint: "Feel free to change the suggested value of €30 per participant" %>
         <p>
           <strong>Total</strong><br>
           <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
