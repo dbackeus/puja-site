@@ -93,7 +93,7 @@
       <%= simple_form_for @registration, url: pay_registration_path(@registration), html: { id: "payment-form" } do |f| %>
         <%= f.input :stripe_token, as: :hidden %>
         <%= f.input :minimum_cost, as: :hidden %>
-        <%= f.input :extra, as: :integer, label: "Extra (pay what you want)", hint: "Feel free to change the suggested value of €30 per participant" %>
+        <%= f.input :extra, as: :integer, label: "Extra contribution (pay what you want)", hint: "Feel free to change the suggested value of €30 per participant" %>
         <p>
           <strong>Total</strong><br>
           <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
