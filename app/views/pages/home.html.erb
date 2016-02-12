@@ -1,61 +1,82 @@
 <% @page_title = "Adi Shakti Puja 2016" %>
 
-<div class="bg"></div>
-<div class="jumbotron">
-  <h1>Adi Shakti Puja 2016</h1>
-  <h1 class="subtitle">Gothenburg, Sweden</h1>
-</div>
+<div id="fullpage">
+  <div data-menuanchor="intro" class="section intro-section">
+    <h1 class="shadowed">Adi Shakti Puja 2016</h1>
+    <h1 class="shadowed subtitle">Gothenburg, Sweden</h1>
+  </div>
+  <div data-menuanchor="welcome" class="section welcome-section">
 
-<div class="container">
-  <div class="row">
-    <section id="welcome">
-      <h2>Welcome</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum neque atque eum molestiae eius, ipsa iusto ipsum sit tenetur, enim dignissimos fugit et praesentium. Sit minima obcaecati in, esse. Porro.</p>
-    </section>
-    <section id="venue">
-      <h2>Venue</h2>
-      <p>
-        The Puja will be held at a beautiful resort by the pacific ocean on the west coast of Sweden, about half an hour away from Gothenburg city.
-      </p>
-      <p>
-        For accommodation you have the option of some amazing cabins, simple hostel rooms or collective sleeping tents.
-      </p>
-      <p>
-        The hall for evening programs and the puja is a sports hall located just next to the camping area.
-      </p>
-      <p>
-        <%= image_tag "venue-1.jpg", class: "img-thumbnail" %>
-        <%= image_tag "venue-2.jpg", class: "img-thumbnail" %>
-        <%= image_tag "venue-3.jpg", class: "img-thumbnail" %>
-        <%= image_tag "venue-4.jpg", class: "img-thumbnail" %>
-      </p>
-    </section>
-    <section id="travel">
-      <h2>Travel</h2>
-      <p>
-        By flight you can travel to Gothenburgs international airport called Landvetter.
-        Cheap prices for flights can be searched for via <a href="http://skyscanner.com" target="_blank">Skyscanner</a>.
-      </p>
-      <p>
-        From the airport you can use public transport to get to the puja area for about 10 EUR.
-        Another good option if you are 4 in a group is to take a taxi for about 60 EUR which will take you to your destination in 50 minutes.
-        We will also offer airport pickup service for those who need for about 25 EUR per person.
-      </p>
-      <p>For details on public transportation please have a look at our <a href="public.html">dedicated page</a> which you can print at your leisure.</p>
-    </section>
-    <section id="registration">
-      <h2>Registration</h2>
-      <p>
-        All yogis wishing to join us in celebrating this historical puja will have to register beforehand.
-        This will help us to order the correct amount of food and divide the limited spaces for accommodation in a practical manner.
-      </p>
-      <div class="text-center">
-        <%= link_to "Register now!", group_registrations_path, class: "btn btn-primary btn-lg" %>
+      <h1>Welcome</h1>
+      <div class="box">
+        <p>
+          The Puja will be held at a beautiful resort by the pacific ocean on the west coast of Sweden, about half an hour away from Gothenburg city.
+        </p>
+        <p>
+          For accommodation you have the option of some amazing cabins, simple hostel rooms or collective sleeping tents.
+        </p>
+        <p>
+          The hall for evening programs and the puja is a sports hall located just next to the camping area.
+        </p>
       </div>
-
-    </section>
-    <section id="visa">
-      <h2>Visa</h2>
+  </div>
+  <div data-menuanchor="venue" class="section venue-section fp-table">
+    <div class="fp-tableCell">
+    <div class="slide slide-venue">
+      <div class="vertically-centered">
+        <h1 class="shadowed">Venue</h1>
+        <div class="box">
+          <p>
+            The Puja will be held at a beautiful resort by the pacific ocean on the west coast of Sweden, about half an hour away from Gothenburg city.
+          </p>
+          <p>
+            For accommodation you have the option of some amazing cabins, simple hostel rooms or collective sleeping tents.
+          </p>
+          <p>
+            The hall for evening programs and the puja is a sports hall located just next to the camping area.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="slide slide-accommodation">
+      <h1 class="shadowed">Accommodation</h1>
+    </div>
+    <div class="slide slide-puja-hall">
+      <h1 class="shadowed">Puja Hall</h1>
+    </div>
+    <div class="slide slide-beds">
+      <h1 class="shadowed">Cabins</h1>
+    </div>
+    <div class="slide slide-surroundings">
+      <h1 class="shadowed">Surroundings</h1>
+    </div>
+  </div>
+  </div>
+  <div data-menuanchor="travel" class="section travel-section">
+    <div class="wash">
+      <h1>Travel</h1>
+      <div class="box">
+        <p>
+          By flight you can travel to Gothenburgs international airport called Landvetter.
+          Cheap prices for flights can be searched for via
+          <a href="http://skyscanner.com" target="_blank">Skyscanner</a>.
+        </p>
+        <p>
+          From the airport you can use public transport to get to the puja area for about €10.
+          Another good option if you are 4 in a group is to take a taxi for about €60 which will
+          take you to your destination in 50 minutes.
+          We will also offer airport pickup service for those who need for about €25 per person.
+        </p>
+        <p>
+          For details on public transportation please have a look at our
+          <a href="public.html">dedicated page</a> which you can print at your leisure.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div data-menuanchor="visa" class="section visa-section">
+    <h1>Visa</h1>
+    <div class="box">
       <p>
         If you're not traveling from an EU/EES country you may need to apply for a Schengen Visa to travel into Sweden. The government office of Sweden has a
         <a href="http://www.government.se/government-policy/migration/list-of-foreign-citizens-who-require-visa-for-entry-into-sweden/" target="_blank">complete list</a>
@@ -65,6 +86,26 @@
         To apply for a visa you can follow the advise given by <a href="http://www.swedenabroad.com/" target="_blank">www.swedenabroad.com</a>.
         First select your country / city from the dropdown menu, then click "Visit Sweden" followed by "Applying for a visa" or similar.
       </p>
-    </section>
+    </div>
   </div>
+  <div data-menuanchor="registration" class="section registration-section">
+    <h1 class="shadowed">Registration</h1>
+    <div class="box">
+      <p>
+        All yogis wishing to join us in celebrating this historical puja will have to register beforehand.
+        This will help us to order the correct amount of food and divide the limited spaces for accommodation in a practical manner.
+      </p>
+      <div class="text-center">
+        <%= link_to "Register now!", group_registrations_path, class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="menu bottom">
+  <a class="menu-link" href="#welcome">Welcome</a>
+  <a class="menu-link" href="#venue">Venue</a>
+  <a class="menu-link" href="#travel">Travel</a>
+  <a class="menu-link" href="#visa">Visa</a>
+  <a class="menu-link" href="#registration">Registration</a>
 </div>

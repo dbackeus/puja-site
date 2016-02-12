@@ -1,0 +1,9 @@
+.section.visa-section {
+  padding-top: 100px;
+  text-align: center;
+  background-image: url(image-path("visa-background.jpg"));
+  
+    @media screen and (min-width: $screen-sm-min) {
+      background-image: url(image-path("visa-background-x2.jpg"));
+    }
+}

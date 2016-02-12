@@ -1,0 +1,9 @@
+.section.registration-section {
+  padding-top: 100px;
+  text-align: center;
+  background-image: url(image-path("registration-background.jpg"));
+
+  @media screen and (min-width: $screen-sm-min) {
+    background-image: url(image-path("registration-background-x2.jpg"));
+  }
+}

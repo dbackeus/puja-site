@@ -1,0 +1,9 @@
+.intro-section {
+  padding: 10% 0 0 0;
+  text-align: center;
+  background-image: url(image-path("intro-background.jpg"));
+
+  @media screen and (min-width: $screen-sm-min) {
+    background-image: url(image-path("intro-background-x2.jpg"));
+  }
+}
