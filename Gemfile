@@ -17,7 +17,6 @@ gem "sass-rails"
 gem "simple_form"
 gem "stripe"
 gem "therubyracer", platforms: :ruby
-gem "turbolinks"
 gem "uglifier", ">= 1.3.0"
 
 group :development, :test do
