@@ -1,22 +1,14 @@
 .section.travel-section {
   h1 {
     color: black;
+    text-shadow: none;
   }
 
   text-align: center;
-  padding: 0;
 
   background-image: url(image-path("travel-background.png"));
 
   @media screen and (min-width: $screen-sm-min) {
     background-image: url(image-path("travel-background-x2.png"));
-  }
-
-  .wash {
-    margin-top: -$menu-height;
-    padding: 100px 0 0 0;
-    background: rgba(255, 255, 255, 0.7);
-    width: 100%;
-    height: 100%;
   }
 }

@@ -1,9 +1,4 @@
 .section.welcome-section {
-  padding: 100px 0 0 0;
   text-align: center;
-  background-image: url(image-path("welcome-background.jpg"));
-
-  @media screen and (min-width: $screen-sm-min) {
-    background-image: url(image-path("welcome-background-x2.jpg"));
-  }
+  // background: linear-gradient(#336699, #5079a2);
 }

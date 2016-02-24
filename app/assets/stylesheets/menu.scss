@@ -1,4 +1,10 @@
 .menu {
+  display: none;
+
+  @media screen and (min-width: $screen-sm-min) {
+    display: block;
+  }
+
   position: fixed;
   width: 100%;
   height: $menu-height;

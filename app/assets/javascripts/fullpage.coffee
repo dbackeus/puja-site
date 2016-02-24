@@ -1,31 +1,14 @@
-ready = ->
-  $("#fullpage").fullpage
-    verticalCentered: false
-    anchors: [
-      "intro"
-      "welcome"
-      "venue"
-      "travel"
-      "visa"
-      "registration"
-    ]
+refreshHeight = ->
+  console.log "refreshing..."
+  $("#intro-section").height $(window).height()
 
-    loopHorizontal: false
+$(document).scroll (e) ->
+  if window.scrollY >= $("#intro-section").height()
+    $(".menu").removeClass("bottom").addClass("top")
+  else if window.scrollY == 0
+    $(".menu").removeClass("top").addClass("bottom")
+  else
+    $(".menu").removeClass("bottom").removeClass("top")
 
-    onLeave: (index, nextIndex, direction) ->
-      if nextIndex == 1
-        $(".menu").removeClass("top")
-      else
-        $(".menu").removeClass("bottom")
-
-    afterLoad: (anchorLink, index) ->
-      $(".menu-link").removeClass("active")
-      $("a[href*=#{anchorLink}]").addClass("active")
-
-      if index == 1
-        $(".menu").removeClass("top").addClass("bottom")
-      else
-        $(".menu").removeClass("bottom").addClass("top")
-
-$(document).ready(ready)
-$(document).on("page:load", ready)
+$(document).ready(refreshHeight)
+$(window).resize(refreshHeight)

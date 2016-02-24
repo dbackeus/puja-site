@@ -1,11 +1,15 @@
 .section.intro-section {
-  padding: 70px 0 0 0;
+  padding: 0;
   text-align: center;
   background-image: url(image-path("intro-background.jpg"));
+  background-position: center top;
+
+  h1:first-child {
+    padding-top: 70px;
+  }
 
   h1.subtitle {
     margin-top: 70px;
-    font-size: 48px;
   }
 
   @media screen and (min-width: $screen-sm-min) {
