@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.fullpage
 //= require jquery.money_field
 //= require bootstrap-sprockets
 //= require_tree .
