@@ -1,5 +1,4 @@
 refreshHeight = ->
-  console.log "refreshing..."
   $("#intro-section").height $(window).height()
 
 $(document).scroll (e) ->

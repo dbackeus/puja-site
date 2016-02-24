@@ -4,12 +4,9 @@
   background-image: url(image-path("intro-background.jpg"));
   background-position: top left;
 
-  h1:first-child {
-    padding-top: 170px;
-
-    @media screen and (min-width: $screen-sm-min) {
-      padding-top: 70px;
-    }
+  .title-holder {
+    position: relative;
+    top: 30%;
   }
 
   h1.subtitle {
@@ -18,6 +15,6 @@
 
   @media screen and (min-width: $screen-sm-min) {
     background-image: url(image-path("intro-background-x2.jpg"));
-    background-position: top center;
+
   }
 }
