@@ -25,6 +25,7 @@ initiateStripe = ->
     email: configuration.email
     currency: "EUR"
     token: onReceivePaymentToken
+    allowRememberMe: false
 
   $(window).on "popstate", ->
     handler.close()

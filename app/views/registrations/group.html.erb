@@ -1,9 +1,11 @@
 <% @page_title = "Puja Registration" %>
 
-<div class="container">
-  <section>
-    <%= link_to "<- Back to main page", root_path %>
-    <h2>Puja Registration</h2>
-    <%= render "form", registration: @registration %>
-  </section>
+<div class="the-gradient sub-page">
+  <h1>Registration Desk</h1>
+  <div class="container">
+    <section>
+      <!-- <p><%= link_to "<- Back to main page", root_path %></p> -->
+      <%= render "form", registration: @registration %>
+    </section>
+  </div>
 </div>

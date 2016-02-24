@@ -10,7 +10,6 @@ class Registration < ApplicationRecord
 
   validates_format_of :email, with: EMAIL_REGEX, message: "Must be a valid email address."
   validates_format_of :phone, with: PHONE_REGEX, message: "Must be a valid international phone number (including country code denoted by + or 00)"
-  validates_presence_of :country
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
 
