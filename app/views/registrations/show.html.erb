@@ -1,6 +1,6 @@
 <% @page_title = "Your Registration" %>
 
-<div class="the-gradient sub-page">
+<div class="sub-page">
   <div class="container">
     <section>
       <!-- <%= link_to "<- Back to main page", root_path %> -->
@@ -34,42 +34,41 @@
         </p>
         <hr>
       <% end %>
-      <div class="row">
-        <div class="col-xs-6">
-          <h3>Details</h3>
-          <% %i[email phone].each do |attribute| %>
-            <p>
-              <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
-              <%= @registration.send(attribute) %>
-            </p>
-          <% end %>
-          <p>
-            <strong><%= Registration.human_attribute_name("accommodation") %></strong><br>
-            <%= @registration.accommodation.titleize %>
-          </p>
-        </div>
-        <div class="col-xs-6">
-          <h3>Participants</h3>
-          <% @registration.participants.each do |participant| %>
-            <p>
-              <%= participant.name.titleize %> (<%= participant.age %>, <%= participant.gender %>)
-            </p>
-          <% end %>
-        </div>
-      </div>
-      <hr>
       <% if @registration.paid? %>
-
+        <div class="row">
+          <div class="col-xs-6">
+            <h3>Details</h3>
+            <% %i[email phone].each do |attribute| %>
+              <p>
+                <strong><%= Registration.human_attribute_name(attribute) %></strong><br>
+                <%= @registration.send(attribute) %>
+              </p>
+            <% end %>
+            <p>
+              <strong><%= Registration.human_attribute_name("accommodation") %></strong><br>
+              <%= @registration.accommodation.titleize %>
+            </p>
+          </div>
+          <div class="col-xs-6">
+            <h3>Participants</h3>
+            <% @registration.participants.each do |participant| %>
+              <p>
+                <%= participant.name.titleize %> (<%= participant.age %>, <%= participant.gender %>)
+              </p>
+            <% end %>
+          </div>
+        </div>
+        <hr>
       <% else %>
         <h2>Payment</h2>
         <p>
           To cover the cost of the puja we have decided to use a "pay what you want"
-          model, while making sure we can at least cover the minimum cost of participation.
+          model, while making sure we can cover the minimum cost of participation.
         </p>
         <p>
           The minimum cost includes accomodation and food for the weekend.
-          However there are many other costs for organizing the puja,
-          totalling about 10 000 EUR. To cover this need your help through donations.
+          However there are many other costs for organizing the puja.
+          getTotalAmountTo cover this need your help through donations.
         </p>
         <p>
           We hope this way
