@@ -1,6 +1,8 @@
 class Registration < ApplicationRecord
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   PHONE_REGEX = /\A\+|00/ # starts with country code
+  TOTAL_CABIN_PLACES = 12 * 7
+  TOTAL_HOSTEL_PLACES = 23 * 2
 
   has_many :participants, inverse_of: :registration, dependent: :delete_all
 
@@ -12,6 +14,14 @@ class Registration < ApplicationRecord
   validates_format_of :phone, with: PHONE_REGEX, message: "Must be a valid international phone number (including country code denoted by + or 00)"
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
+
+  def self.cabin_places_left
+    TOTAL_CABIN_PLACES - Participant.count_for_accommodation("cabin")
+  end
+
+  def self.hostel_places_left
+    TOTAL_HOSTEL_PLACES - Participant.count_for_accommodation("hostel")
+  end
 
   def total_cost
     minimum_cost + extra.to_i

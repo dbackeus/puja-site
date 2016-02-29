@@ -17,12 +17,12 @@ module ApplicationHelper
     cabin_label = radio_with_hint(
       "Cabin",
       "Enjoy the comfort of the lovely cabins located near the sea. Each cabin can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No sleeping bags or sheets required.<br>Cost: €108 per person.",
-      places_left: 88,
+      places_left: Registration.cabin_places_left,
     )
     hostel_label = radio_with_hint(
       "Hostel",
       "Get a bed in one of the 11 available double rooms in the newly renovated hostel. No sleeping bags or sheets required.<br>Cost: €120 per person.",
-      places_left: 25,
+      places_left: Registration.hostel_places_left,
     )
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
