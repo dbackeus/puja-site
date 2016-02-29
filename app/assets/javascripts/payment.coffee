@@ -16,6 +16,10 @@ onReceivePaymentToken = (token) ->
   $("#payment-form").submit()
 
 initiateStripe = ->
+  unless window.StripeCheckout
+    console.warn "StripeCheckout not available, skipping..."
+    return
+
   configuration = $("#stripe-configuration").data()
 
   handler = StripeCheckout.configure
