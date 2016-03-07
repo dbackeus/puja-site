@@ -29,6 +29,11 @@
   <% if registration.group? %>
     <hr>
     <h3>Participants</h3>
+    <p>
+      You may register just a single person. But if you are paying for a group of people staying in the same
+      type of accommodation the easiest way to register is to add everyone
+      via the Add participant button.
+    </p>
     <div id="participants">
       <%= f.fields_for :participants do |ff| %>
         <div class="duplicatable_nested_form">
@@ -52,6 +57,13 @@
     <a href="#" class="btn btn-warning btn-sm" id="add-participant-button"><%= glyph_icon("plus") %> Add participant</a>
   <% end %>
   <hr>
-  <%= f.input :transport, as: :boolean, label: "Need transport from the airport" %>
+  <h3>Transporation</h3>
+  <p>
+    For groups of yogis traveling together we recommend sharing a taxi from the airport. It is also
+    easy and cheap to use Gothenburgs public transport system. However if you prefer to be picked up by
+    a yogi we will arrange some vans to shuttle people from the airport. Please tick the checkbox
+    below and we'll email you the details.
+  </p>
+  <%= f.input :transport, as: :boolean, label: "Yes, I need yogi transport from the airport" %>
   <%= f.button :submit, "Register", class: "btn-primary btn-lg" %>
 <% end %>
