@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.money_field
 //= require bootstrap-sprockets
+//= require lightbox
 //= require_tree .

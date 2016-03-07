@@ -13,6 +13,8 @@
  *= require_self
  */
 
+@import "lightbox";
+
 $grid-gutter-width: 30px;
 $container-desktop: (780px + $grid-gutter-width);
 $container-large-desktop: $container-desktop;
@@ -136,4 +138,14 @@ h1 {
   background-size: cover;
   text-align: center;
   padding-top: 100px;
+}
+
+.thumbnail-link {
+  display: block;
+  max-height: 186px;
+  margin-bottom: 15px;
+
+  img {
+    max-height: 186px;
+  }
 }

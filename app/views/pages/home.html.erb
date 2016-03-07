@@ -33,6 +33,19 @@
     <p>
       The hall for evening programs and the puja is a sports hall located just next to the camping area.
     </p>
+    <div class="row">
+      <% Dir["#{Rails.root}/app/assets/images/venue/*.jpg"].each do |filename| %>
+        <% asset_name = File.basename(filename) %>
+        <div class="col-sm-6">
+          <%= link_to(
+            image_tag("venue/thumbnails/#{asset_name}", class: "img-thumbnail"),
+            asset_path("venue/#{asset_name}"),
+            data: { lightbox: "venue", title: "" },
+            class: "thumbnail-link"
+          ) %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <div id="travel" class="section travel-section">
