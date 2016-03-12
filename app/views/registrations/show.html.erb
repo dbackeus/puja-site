@@ -19,22 +19,8 @@
       <h2>Your Registration</h2>
       <% if @registration.paid? %>
         <p>
-          Your registration has been paid and confirmed. See you in June! :D
+          Your registration has been paid and confirmed and we are looking forward to seeing you in June!
         </p>
-      <% else %>
-        <p>
-          Please note that your reservation will need
-          to be paid before it is confirmed. If you have requested accommodation
-          in the cabins or hostel the places left may run out if you take too long
-          to pay.
-        </p>
-        <p>
-          If you want to pay later you can find the link back to this page in the
-          confirmation email we sent to you.
-        </p>
-        <hr>
-      <% end %>
-      <% if @registration.paid? %>
         <div class="row">
           <div class="col-xs-6">
             <h3>Details</h3>
@@ -53,13 +39,24 @@
             <h3>Participants</h3>
             <% @registration.participants.each do |participant| %>
               <p>
-                <%= participant.name.titleize %> (<%= participant.age %>, <%= participant.gender %>)
+                <%= participant.name.titleize %> (<%= participant.age.humanize %>, <%= participant.gender.humanize %>)
               </p>
             <% end %>
           </div>
         </div>
         <hr>
       <% else %>
+        <p>
+          Please note that your reservation will need
+          to be paid before it is confirmed. If you have requested accommodation
+          in the cabins or hostel the places left may run out if you take too long
+          to pay.
+        </p>
+        <p>
+          If you want to pay later you can find the link back to this page in the
+          confirmation email we sent to you.
+        </p>
+        <hr>
         <h2>Payment</h2>
         <p>
           To cover the cost of the puja we have decided to use a "pay what you want"
@@ -82,6 +79,7 @@
               <th>Name</th>
               <th>Age group</th>
               <th>Base cost</th>
+              <th>Donation</th>
             </tr>
           </thead>
           <tbody>
@@ -89,7 +87,10 @@
               <tr>
                 <td><%= participant.name.titleize %></td>
                 <td><%= participant.age.titleize %></td>
-                <td>€<%= @registration.cost_per_participant %></td>
+                <td>€<%= participant.cost %></td>
+                <td class="donation" data-is-donating="<%= participant.applicable_for_donation? %>">
+                  €<%= participant.donation %>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -97,7 +98,11 @@
         <%= simple_form_for @registration, url: pay_registration_path(@registration), html: { id: "payment-form" } do |f| %>
           <%= f.input :stripe_token, as: :hidden %>
           <%= f.input :minimum_cost, as: :hidden %>
-          <%= f.input :extra, as: :integer, label: "Extra contribution (pay what you want)", hint: "Feel free to change the suggested value of €30 per participant" %>
+          <%= f.input :extra,
+            as: :integer,
+            label: "Extra contribution (pay what you want)",
+            hint: "Suggested value is based on €30 per (non child) participant, you may change this how you like."
+          %>
           <p>
             <strong>Total</strong><br>
             <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
@@ -109,11 +114,30 @@
             data-image="<%= asset_path "vishwa-nirmala-dharma.jpg" %>"
             data-email="<%= @registration.email %>"
           ></span>
-          <%= link_to "Pay with credit card", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
+          <%= link_to "Pay with credit/debit card", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
           <% if Rails.env.development? %>
-            <p>4242424242424242</p>
           <% end %>
         <% end %>
+        <hr>
+        <p>Can't pay with card?</p>
+        <p>
+          If you are not able to go through with the card payment (please try first to make source
+          since it makes the registration much more simple for us to process) you may also
+          pay via international bank transfer. The information you should need for such a transfer are:
+        </p>
+        <p>
+          Account holder: SAHAJA YOGA SWEDEN<br>
+          IBAN: SE75 9500 0099 6042 6249 5270<br>
+          BIC (or SWIFT): NDEASESS<br>
+        </p>
+        <p>
+          Please note that you must also include the code <b><%= @registration.token %></b> inside the personal message
+          for the transfer. Otherwise we will not be able to relate your payment to your registration.
+        </p>
+        <p>
+          After we have received your payment we will manually process it, please allow
+          some days for this to happen. You will receive an email when your registration has been confirmed as paid.
+        </p>
       <% end %>
     </section>
   </div>

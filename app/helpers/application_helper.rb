@@ -16,17 +16,23 @@ module ApplicationHelper
   def accommodation_options
     cabin_label = radio_with_hint(
       "Cabin",
-      "Enjoy the comfort of the lovely cabins located near the sea. Each cabin can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No sleeping bags or sheets required.<br>Cost: €108 per person.",
+      "Enjoy the comfort of the lovely cabins located near the sea. Each cabin
+      can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No
+      sleeping bags or sheets required.<br>Cost: €108 + voluntary donation per person.",
       places_left: Registration.cabin_places_left,
     )
     hostel_label = radio_with_hint(
       "Hostel",
-      "Get a bed in one of the 11 available double rooms in the newly renovated hostel. No sleeping bags or sheets required.<br>Cost: €120 per person.",
+      "Get a bed in one of the 11 available double rooms in the newly renovated
+      hostel. No sleeping bags or sheets required.<br>Cost: €120 + voluntary donation per person.",
       places_left: Registration.hostel_places_left,
     )
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
-      "We will erect collective sleeping tents hosting around 100 yogis each. They will be heated so should be comfortable even if the nights get cold. Don't forget to bring sleeping bags and sleeping mats. If you prefer you can also bring your own tent.<br>Cost: €55 per person.",
+      "We will erect collective sleeping tents hosting around 100 yogis each.
+      They will be heated so should be comfortable even if the nights get cold.
+      Don't forget to bring sleeping bags and sleeping mats. If you prefer you
+      can also bring your own tent.<br>Cost: €55 + voluntary donation per person.",
     )
 
     {
@@ -46,8 +52,9 @@ module ApplicationHelper
   def age_options
     {
       "Adult" => "adult",
-      "Child (12 or younger)" => "child",
       "Yuva (13-21)" => "yuva",
+      "Child (4-12)" => "child",
+      "Small child (0-3)" => "small_child",
     }
   end
 

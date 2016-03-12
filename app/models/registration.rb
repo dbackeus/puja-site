@@ -32,7 +32,7 @@ class Registration < ApplicationRecord
   end
 
   def minimum_cost
-    participants.length * cost_per_participant
+    participants.sum(&:cost)
   end
 
   def cost_per_participant
@@ -40,7 +40,11 @@ class Registration < ApplicationRecord
   end
 
   def extra
-    read_attribute(:extra) || participants.length * 30
+    read_attribute(:extra) || participants.select(&:applicable_for_donation?).length * 30
+  end
+
+  def extra_per_participant
+    extra / participants.select(&:applicable_for_donation?).length
   end
 
   def single?
@@ -66,10 +70,10 @@ class Registration < ApplicationRecord
   end
 
   def generate_token
-    self.token = SecureRandom.hex
+    self.token = SecureRandom.hex(8)
 
     while Registration.where(token: token).exists?
-      self.token = SecureRandom.hex
+      self.token = SecureRandom.hex(8)
     end
   end
 end

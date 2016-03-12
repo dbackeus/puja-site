@@ -12,7 +12,12 @@
         <%= f.input :country, as: :hidden %>
         <hr>
         <h3>Choose a type of Accommodation</h3>
-        <p>We have three options for accommodation. Cabins, hostel or tents with varying costs. Food from Friday dinner to Monday breakfast is included in the in all three options.</p>
+        <p>
+          We have three options for accommodation. Cabins, hostel or tents with
+          varying costs. Food from Friday dinner to Monday breakfast is included
+          in the in all three options. Note that regarding cost, small children (up to 3 years old) can come free of charge and
+          children up to 12 years old will not be asked for any extra donation.
+        </p>
         <%= f.input :accommodation,
           as: :radio_buttons,
           collection: accommodation_options,

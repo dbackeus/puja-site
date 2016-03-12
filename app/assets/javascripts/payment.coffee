@@ -15,6 +15,13 @@ onReceivePaymentToken = (token) ->
   $("#pay-button").attr("disabled", true)
   $("#payment-form").submit()
 
+onExtraChange = (e) ->
+  numberOfDonators = $("[data-is-donating=true]").length
+  extraPerParticipant = (parseInt(e.target.value) / numberOfDonators) || 0
+
+  $("[data-is-donating=true]").html("€#{Math.round(extraPerParticipant)}")
+  $("#total-cost").html("€#{getTotalAmount()}.00")
+
 initiateStripe = ->
   unless window.StripeCheckout
     console.warn "StripeCheckout not available, skipping..."
@@ -46,8 +53,7 @@ ready = ->
 
   $("#registration_minimum_cost, #registration_extra").moneyField symbol: "€"
 
-  $("#registration_extra").keyup (e) ->
-    $("#total-cost").html("€#{getTotalAmount()}.00")
+  $("#registration_extra").keyup onExtraChange
 
 $(document).ready(ready)
 $(document).on("page:load", ready)
