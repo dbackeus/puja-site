@@ -1,5 +1,8 @@
 class RegistrationMailer < ApplicationMailer
-  default from: "no-reply@#{ENV.fetch("MAILGUN_DOMAIN")}"
+  default(
+    from: "Adi Shakti Puja 2016 <no-reply@#{ENV.fetch("MAILGUN_DOMAIN")}>",
+    reply_to: "adishaktipuja+registration@gmail.com",
+  )
 
   def registered(registration)
     @registration = registration
