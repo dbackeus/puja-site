@@ -3,8 +3,6 @@
 <div class="sub-page">
   <div class="container">
     <section>
-      <!-- <%= link_to "<- Back to main page", root_path %> -->
-
       <% if flash[:notice].present? %>
         <div class="alert alert-success">
           <%= flash[:notice].html_safe %>
@@ -71,7 +69,7 @@
           We hope this way
           those who do not have a steady income, such as students, or those coming
           from countries with a weaker economy can still come to enjoy the puja,
-          while those who earn more can excercise their generosity from their hearts.
+          while those who earn more can exercise their generosity from their hearts.
         </p>
         <table class="table">
           <thead>
@@ -121,9 +119,10 @@
         <hr>
         <p>Can't pay with card?</p>
         <p>
-          If you are not able to go through with the card payment (please try first to make source
-          since it makes the registration much more simple for us to process) you may also
-          pay via international bank transfer. The information you should need for such a transfer are:
+          If you are not able to go through with the card payment (but please try
+          paying with your card first, since it's much simpler that way) you may
+          also pay via international bank transfer. The information you should
+          need for such a transfer are:
         </p>
         <p>
           Account holder: SAHAJA YOGA SWEDEN<br>
@@ -131,12 +130,14 @@
           BIC (or SWIFT): NDEASESS<br>
         </p>
         <p>
-          Please note that you must also include the code <b><%= @registration.token %></b> inside the personal message
-          for the transfer. Otherwise we will not be able to relate your payment to your registration.
+          Please note that you must also include the code <b><%= @registration.token %></b>
+          inside the personal message for the transfer. Otherwise we will not be
+          able to relate your payment to your registration.
         </p>
         <p>
-          After we have received your payment we will manually process it, please allow
-          some days for this to happen. You will receive an email when your registration has been confirmed as paid.
+          After we have received your payment we will manually process it, please
+          allow some days for this to happen. You will receive an email when your
+          registration has been confirmed as paid.
         </p>
       <% end %>
     </section>
