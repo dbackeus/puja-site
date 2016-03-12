@@ -4,11 +4,6 @@ Rails.application.routes.draw do
   get "/register", to: "registrations#new"
 
   resources :registrations do
-    collection do
-      get :single
-      get :group
-    end
-
     member do
       patch :pay
     end

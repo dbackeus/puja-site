@@ -1,29 +1,63 @@
-<div class="container">
-  <section>
-    <%= link_to "<- Back to main page", root_path %>
-    <h2>Puja registration</h2>
-    <p>Please select if you wish to register a single person or group.</p>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="well text-center">
-          <h3>Group</h3>
-          <p style="text-align: left">
-            Use the group registration if you wish to register multiple people
-            from the same country staying in the same type of accommodation.
-          </p>
-          <%= link_to "Register Group", group_registrations_path, class: "btn btn-primary" %>
+<% @page_title = "Puja Registration" %>
+
+<div class="sub-page">
+  <h1>Registration Desk</h1>
+  <div class="container">
+    <section>
+      <%= simple_form_for @registration do |f| %>
+        <%= f.input :registration_type, as: :hidden %>
+        <h3>Contact information</h3>
+        <%= f.input :email, hint: "Booking confirmation and payment link will be sent to this email." %>
+        <%= f.input :phone, hint: "A phone number which we can use before and during the puja." %>
+        <%= f.input :country, as: :hidden %>
+        <hr>
+        <h3>Choose a type of Accommodation</h3>
+        <p>We have three options for accommodation. Cabins, hostel or tents with varying costs. Food from Friday dinner to Monday breakfast is included in the in all three options.</p>
+        <%= f.input :accommodation,
+          as: :radio_buttons,
+          collection: accommodation_options,
+          label: false
+        %>
+        <hr>
+        <h3>Participants</h3>
+        <p>
+          You may register just a single person. But if you are paying for a group of people staying in the same
+          type of accommodation the easiest way to register is to add everyone
+          via the Add participant button.
+        </p>
+        <div id="participants">
+          <%= f.fields_for :participants do |ff| %>
+            <div class="duplicatable_nested_form">
+              <div class="row">
+                <div class="col-sm-4">
+                  <%= ff.input :name %>
+                </div>
+                <div class="col-sm-3">
+                  <%= ff.input :gender, as: :select, collection: gender_options, include_blank: false %>
+                </div>
+                <div class="col-sm-3">
+                  <%= ff.input :age, as: :select, collection: age_options, include_blank: false %>
+                </div>
+                <div class="col-sm-2">
+                  <%= link_to "remove", "#", class: "btn btn-warning btn-xs remove-participant" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="well text-center">
-          <h3>Single</h3>
-          <p style="text-align: left">Use the single registration if you are registering only one person
-            or if you want to register different people for different choices
-            of accommodation.
-          </p>
-          <%= link_to "Register Single", single_registrations_path, class: "btn btn-primary" %>
-        </div>
-      </div>
-    </div>
-  </section>
+        <a href="#" class="btn btn-warning btn-sm" id="add-participant-button"><%= glyph_icon("plus") %> Add participant</a>
+        <hr>
+        <h3>Transporation</h3>
+        <p>
+          For groups of yogis traveling together we recommend sharing a taxi from the airport. It is also
+          easy and cheap to use Gothenburgs public transport system. However if you prefer to be picked up by
+          a yogi we will arrange some vans to shuttle people from the airport. Please tick the checkbox
+          below and we'll email you the details.
+        </p>
+        <%= f.input :transport, as: :boolean, label: "Yes, I need yogi transport from the airport" %>
+        <hr>
+        <%= f.button :submit, "Register", class: "btn-primary btn-lg" %>
+      <% end %>
+    </section>
+  </div>
 </div>
