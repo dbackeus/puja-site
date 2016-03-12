@@ -51,6 +51,25 @@ module ApplicationHelper
     }
   end
 
+  def venue_images
+    {
+      "56.jpg" => "Beatiful view near camping",
+      "8.jpg" => "Outside some of the sleeping cabins",
+      "12.jpg" => "Camping site facilities",
+      "13.jpg" => "Kitchen / Livingroom of cabin",
+      "14.jpg" => "Upper floor bedroom of cabin",
+      "15.jpg" => "Cabin living room seen from upper floor",
+      "16.jpg" => "Cabin living room",
+      "17.jpg" => "Cabin veranda",
+      "22.jpg" => "Cabin first floor bed room #1",
+      "23.jpg" => "Cabin first floor bed room #2",
+      "27.jpg" => "Outside view of camping site",
+      "38.jpg" => "Hostel buildings and childrens playground",
+      "41.jpg" => "Puja hall",
+      "45.jpg" => "Nearby community 'Skärhamn'",
+    }
+  end
+
   private
 
   def radio_with_hint(label, hint, places_left: nil)
