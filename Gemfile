@@ -16,7 +16,7 @@ gem "pg"
 gem "puma"
 gem "rails", ">= 5.0.0.beta3"
 gem "rollbar"
-gem "sass-rails"
+gem "sassc-rails"
 gem "simple_form"
 gem "stripe"
 gem "therubyracer", platforms: :ruby
