@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Age Group</th>
+        <th>Accommodation</th>
+        <th>Reference</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </thead>
+      <tbody>
+        <% @participants.each do |participant| %>
+          <% registration = participant.registration %>
+          <tr>
+            <td><%= participant.name %></td>
+            <td><%= participant.gender %></td>
+            <td><%= participant.age %></td>
+            <td><%= registration.accommodation %></td>
+            <td><%= registration.token %></td>
+            <td><%= registration.email %></td>
+            <td><%= registration.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

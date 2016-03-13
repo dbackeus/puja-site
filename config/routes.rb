@@ -3,6 +3,10 @@ Rails.application.routes.draw do
 
   get "/register", to: "registrations#new"
 
+  namespace :admin do
+    get "registrations"
+  end
+
   resources :registrations do
     member do
       patch :pay
