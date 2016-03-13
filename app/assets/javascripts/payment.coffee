@@ -1,8 +1,9 @@
 handler = null
 
 getTotalAmount = ->
-  minimum = parseFloat($("#registration_minimum_cost").val())
-  extra = parseFloat($("#registration_extra").val()) || 0
+  numberOfDonators = $("[data-is-donating=true]").length
+  minimum = parseInt($("#registration_minimum_cost").val())
+  extra = parseInt($(".registration_extra_per_participant input[type=radio]:checked").val()) * numberOfDonators
 
   minimum + extra
 
@@ -17,9 +18,18 @@ onReceivePaymentToken = (token) ->
 
 onExtraChange = (e) ->
   numberOfDonators = $("[data-is-donating=true]").length
-  extraPerParticipant = (parseInt(e.target.value) / numberOfDonators) || 0
+  extraPerParticipant = e.target.value
+  maybeEmoji = switch extraPerParticipant
+    when "50"
+      " 👌"
+    when "84"
+      " ⭐️"
+    when "108"
+      " 💖"
+    else
+      ""
 
-  $("[data-is-donating=true]").html("€#{Math.round(extraPerParticipant)}")
+  $("[data-is-donating=true]").html("€#{extraPerParticipant}#{maybeEmoji}")
   $("#total-cost").html("€#{getTotalAmount()}.00")
 
 initiateStripe = ->
@@ -53,7 +63,7 @@ ready = ->
 
   $("#registration_minimum_cost, #registration_extra").moneyField symbol: "€"
 
-  $("#registration_extra").keyup onExtraChange
+  $(".registration_extra_per_participant input[type=radio]").change onExtraChange
 
 $(document).ready(ready)
 $(document).on("page:load", ready)

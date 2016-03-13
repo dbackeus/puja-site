@@ -71,36 +71,47 @@
           from countries with a weaker economy can still come to enjoy the puja,
           while those who earn more can exercise their generosity from their hearts.
         </p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Age group</th>
-              <th>Base cost</th>
-              <th>Donation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @registration.participants.each do |participant| %>
-              <tr>
-                <td><%= participant.name.titleize %></td>
-                <td><%= participant.age.titleize %></td>
-                <td>€<%= participant.cost %></td>
-                <td class="donation" data-is-donating="<%= participant.applicable_for_donation? %>">
-                  €<%= participant.donation %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
         <%= simple_form_for @registration, url: pay_registration_path(@registration), html: { id: "payment-form" } do |f| %>
+          <h3>Extra donation (pay what you want)</h3>
+          <p>
+            Please select number of Euro to donate per participant on top of the minimum cost.
+            Extra donation will not be added to children (up to 12 years old).
+          </p>
+          <%= f.input :extra_per_participant,
+            as: :radio_buttons,
+            label: false,
+            collection: {
+              "<b class='donation-amount'>€0</b> If you are in a position of weak economy feel free to select this.".html_safe => 0,
+              "<b class='donation-amount'>€30</b> The recommended donation level, thank you!".html_safe => 30,
+              "<b class='donation-amount'>€50</b> We appreciate your generosity!".html_safe => 50,
+              "<b class='donation-amount'>€84</b> The 84 names of Shri Vishnumaya level of generosity!".html_safe => 84,
+              "<b class='donation-amount'>€108</b> The 108 names of Shri Lakshmi level of generosity!".html_safe => 108,
+            }
+          %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age group</th>
+                <th>Base cost</th>
+                <th>Donation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @registration.participants.each do |participant| %>
+                <tr>
+                  <td><%= participant.name.titleize %></td>
+                  <td><%= participant.age.titleize %></td>
+                  <td>€<%= participant.cost %></td>
+                  <td class="donation" data-is-donating="<%= participant.applicable_for_donation? %>">
+                    €<%= participant.donation %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
           <%= f.input :stripe_token, as: :hidden %>
           <%= f.input :minimum_cost, as: :hidden %>
-          <%= f.input :extra,
-            as: :integer,
-            label: "Extra contribution (pay what you want)",
-            hint: "Suggested value is based on €30 per (non child) participant, you may change this how you like."
-          %>
           <p>
             <strong>Total</strong><br>
             <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
