@@ -39,12 +39,12 @@ class Registration < ApplicationRecord
     accommodation_cost[accommodation]
   end
 
+  def extra
+    read_attribute(:extra) || participants.select(&:applicable_for_donation?).length * 30
+  end
+
   def extra_per_participant
-    if extra
-      extra / participants.select(&:applicable_for_donation?).length
-    else
-      30
-    end
+    extra / participants.select(&:applicable_for_donation?).length
   end
 
   def extra_per_participant=(value)
