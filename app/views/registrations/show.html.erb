@@ -13,12 +13,12 @@
           <%= flash[:error].html_safe %>
         </div>
       <% end %>
-
       <h2>Your Registration</h2>
       <% if @registration.paid? %>
         <p>
           Your registration has been paid and confirmed and we are looking forward to seeing you in June!
         </p>
+        <p><%= image_tag "thank-you.jpg", class: "img-responsive" %></p>
         <div class="row">
           <div class="col-xs-6">
             <h3>Details</h3>
@@ -43,6 +43,20 @@
           </div>
         </div>
         <hr>
+        <h3>Amount paid</h3>
+        <p>
+          You paid: €<%= @registration.total_cost %>.00 out of which €<%= @registration.extra.to_i %>.00 was
+          extra donation.
+        </p>
+        <% if @registration.transport? %>
+          <hr>
+          <h3>Transport</h3>
+          <p>
+            You requested transport assistance from the airport. We will contact you regarding this
+            via email. Please allow a few days for us to process your registration but if you have not
+            recieved any inquiry within a week please get in contact with us.
+          </p>
+        <% end %>
       <% else %>
         <p>
           Please note that your reservation will need
