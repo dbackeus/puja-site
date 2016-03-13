@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208201440) do
+ActiveRecord::Schema.define(version: 20160313105453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20160208201440) do
     t.integer  "registration_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.index ["registration_id"], name: "index_participants_on_registration_id", using: :btree
   end
+
+  add_index "participants", ["registration_id"], name: "index_participants_on_registration_id", using: :btree
 
   create_table "registrations", force: :cascade do |t|
     t.string   "email"
@@ -41,8 +42,10 @@ ActiveRecord::Schema.define(version: 20160208201440) do
     t.string   "stripe_charge_id"
     t.string   "stripe_token"
     t.string   "token"
-    t.index ["token"], name: "index_registrations_on_token", unique: true, using: :btree
+    t.text     "comment"
   end
+
+  add_index "registrations", ["token"], name: "index_registrations_on_token", unique: true, using: :btree
 
   add_foreign_key "participants", "registrations"
 end

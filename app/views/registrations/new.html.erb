@@ -61,7 +61,13 @@
         </p>
         <%= f.input :transport, as: :boolean, label: "Yes, I need yogi transport from the airport" %>
         <hr>
-        <%= f.button :submit, "Register", class: "btn-primary btn-lg" %>
+        <h3>Comment</h3>
+        <p>
+          If any participants have any allergies or you want to bring pets please let us know using the
+          comment field below.
+        </p>
+        <%= f.input :comment, label: false %>
+        <%= f.button :submit, "Register!", class: "btn-primary btn-lg" %>
       <% end %>
     </section>
   </div>
