@@ -70,10 +70,10 @@ class Registration < ApplicationRecord
   end
 
   def generate_token
-    self.token = SecureRandom.hex(8)
+    self.token = SecureRandom.hex(4)
 
     while Registration.where(token: token).exists?
-      self.token = SecureRandom.hex(8)
+      self.token = SecureRandom.hex(4)
     end
   end
 end
