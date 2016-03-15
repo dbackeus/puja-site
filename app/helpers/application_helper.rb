@@ -17,7 +17,7 @@ module ApplicationHelper
     cabin_label = radio_with_hint(
       "Cabin",
       "Enjoy the comfort of the lovely cabins located near the sea. Each cabin
-      can host 7 people, 3 in a downstairs bedroom and 4 in a upstairs bedroom. No
+      can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom. No
       sleeping bags or sheets required.<br>Cost: €108 + voluntary donation per person.",
       places_left: Registration.cabin_places_left,
     )
