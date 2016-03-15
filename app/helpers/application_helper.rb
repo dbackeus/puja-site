@@ -24,7 +24,7 @@ module ApplicationHelper
     hostel_label = radio_with_hint(
       "Hostel",
       "Get a bed in one of the 11 available double rooms in the newly renovated
-      hostel. No sleeping bags or sheets required.<br>Cost: €120 + voluntary donation per person.",
+      hostel. No sleeping bags or sheets required.<br>Cost: €140 + voluntary donation per person.",
       places_left: Registration.hostel_places_left,
     )
     tent_label = radio_with_hint(

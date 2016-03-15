@@ -2,7 +2,7 @@ class Registration < ApplicationRecord
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   PHONE_REGEX = /\A\+|00/ # starts with country code
   TOTAL_CABIN_PLACES = 12 * 7
-  TOTAL_HOSTEL_PLACES = 23 * 2
+  TOTAL_HOSTEL_PLACES = 11 * 2
 
   has_many :participants, inverse_of: :registration, dependent: :delete_all
 
@@ -68,8 +68,8 @@ class Registration < ApplicationRecord
   def accommodation_cost
     {
       "cabin" => 108,
-      "hostel" => 120,
-      "tent" => 50,
+      "hostel" => 140,
+      "tent" => 55,
     }
   end
 
