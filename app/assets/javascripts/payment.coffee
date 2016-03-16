@@ -20,8 +20,10 @@ onExtraChange = (e) ->
   numberOfDonators = $("[data-is-donating=true]").length
   extraPerParticipant = e.target.value
   maybeEmoji = switch extraPerParticipant
+    when "50"
+      " <span class='glyphicon glyphicon-star' style='color: orange'>"
     when "84"
-      " <span class='glyphicon glyphicon-star' style='color: orange'></span>"
+      " <span class='glyphicon glyphicon-star' style='color: orange'></span><span class='glyphicon glyphicon-star' style='color: orange'></span>"
     when "108"
       " <span class='glyphicon glyphicon-heart' style='color: #e9677d'></span>"
     else
