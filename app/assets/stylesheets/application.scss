@@ -143,11 +143,10 @@ h1 {
 
 .thumbnail-link {
   display: block;
-  max-height: 186px;
   margin-bottom: 15px;
 
   img {
-    max-height: 186px;
+    width: 100%;
   }
 }
 
@@ -162,4 +161,8 @@ h1 {
 
 .donation-amount {
   width: 30px;
+}
+
+.m-b-1 {
+  margin-bottom: 20px;
 }

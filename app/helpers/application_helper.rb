@@ -17,22 +17,24 @@ module ApplicationHelper
     cabin_label = radio_with_hint(
       "Cabin",
       "Enjoy the comfort of the lovely cabins located near the sea. Each cabin
-      can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom. No
-      sleeping bags or sheets required.<br>Cost: €108 + voluntary donation per person.",
+      can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom.
+      Blankets and pillows are provided but you will have to bring sheets and towels
+      or rent on site for €10.<br>Cost: €108 + voluntary donation per person.",
       places_left: Registration.cabin_places_left,
     )
     hostel_label = radio_with_hint(
       "Hostel",
       "Get a bed in one of the 11 available double rooms in the newly renovated
-      hostel. No sleeping bags or sheets required.<br>Cost: €140 + voluntary donation per person.",
+      hostel. Blankets and pillows are provided but you will have to bring sheets and towels
+      or rent on site for €10.<br>Cost: €140 + voluntary donation per person.",
       places_left: Registration.hostel_places_left,
     )
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
       "We will erect collective sleeping tents hosting around 100 yogis each.
       They will be heated so should be comfortable even if the nights get cold.
-      Don't forget to bring sleeping bags and sleeping mats. If you prefer you
-      can also bring your own tent.<br>Cost: €55 + voluntary donation per person.",
+      Don't forget to bring sleeping bags and sleeping mats. You are also welcome
+      to bring your own tent.<br>Cost: €55 + voluntary donation per person.",
     )
 
     {
@@ -61,17 +63,17 @@ module ApplicationHelper
   def venue_images
     {
       "56.jpg" => "Beatiful view near camping",
-      "8.jpg" => "Outside some of the sleeping cabins",
-      "12.jpg" => "Camping site facilities",
+      #"8.jpg" => "Outside some of the sleeping cabins",
+      #"12.jpg" => "Camping site facilities",
       "13.jpg" => "Kitchen / Livingroom of cabin",
-      "14.jpg" => "Upper floor bedroom of cabin",
+      #"14.jpg" => "Upper floor bedroom of cabin",
       "15.jpg" => "Cabin living room seen from upper floor",
-      "16.jpg" => "Cabin living room",
-      "17.jpg" => "Cabin veranda",
+      #"16.jpg" => "Cabin living room",
+      #"17.jpg" => "Cabin veranda",
       "22.jpg" => "Cabin first floor bed room #1",
-      "23.jpg" => "Cabin first floor bed room #2",
-      "27.jpg" => "Outside view of camping site",
-      "38.jpg" => "Hostel buildings and childrens playground",
+      #"23.jpg" => "Cabin first floor bed room #2",
+      #"27.jpg" => "Outside view of camping site",
+      #"38.jpg" => "Hostel buildings and childrens playground",
       "41.jpg" => "Puja hall",
       "45.jpg" => "Nearby community 'Skärhamn'",
     }
