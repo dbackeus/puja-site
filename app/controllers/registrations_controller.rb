@@ -29,6 +29,10 @@ class RegistrationsController < ApplicationController
     @registration = Registration.find_by_token!(params[:id])
 
     unless @registration.paid?
+      @registration.update_attributes!(
+        extra_per_participant: registration_params[:extra_per_participant]
+      )
+
       customer = Stripe::Customer.create(
         email: @registration.email,
         source: registration_params[:stripe_token],
@@ -45,7 +49,6 @@ class RegistrationsController < ApplicationController
         stripe_token: registration_params[:stripe_token],
         stripe_customer_id: customer.id,
         stripe_charge_id: charge.id,
-        extra_per_participant: registration_params[:extra_per_participant],
         paid: true,
       )
 
