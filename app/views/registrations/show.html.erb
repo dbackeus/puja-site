@@ -128,7 +128,7 @@
           <%= f.input :minimum_cost, as: :hidden %>
           <p>
             <strong>Total</strong><br>
-            <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00</span>
+            <span id="total-cost" class="total-cost">€<%= @registration.total_cost %>.00*</span>
           </p>
           <script src="https://checkout.stripe.com/checkout.js"></script>
           <span
@@ -138,16 +138,17 @@
             data-email="<%= @registration.email %>"
           ></span>
           <%= link_to "Pay with credit/debit card", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
-          <% if Rails.env.development? %>
-          <% end %>
+          <p><br><i>
+            * Sum will undergo currency conversion to Swedish Krona
+            so the EUR figure might be slightly different in your bank history
+          </i></p>
         <% end %>
         <hr>
-        <p>Can't pay with card?</p>
+        <p><b>Can't pay with card?</b></p>
         <p>
-          If you are not able to go through with the card payment (but please try
-          paying with your card first, since it's much simpler that way) you may
-          also pay via international bank transfer. The information you should
-          need for such a transfer are:
+          If you are not able to go through with the card payment you may
+          also pay via international bank transfer. The information you
+          will need for such a transfer are:
         </p>
         <p>
           Account holder: SAHAJA YOGA SWEDEN<br>

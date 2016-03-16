@@ -28,7 +28,7 @@ onExtraChange = (e) ->
       ""
 
   $("[data-is-donating=true]").html("€#{extraPerParticipant}#{maybeEmoji}")
-  $("#total-cost").html("€#{getTotalAmount()}.00")
+  $("#total-cost").html("€#{getTotalAmount()}.00*")
 
 initiateStripe = ->
   unless window.StripeCheckout
