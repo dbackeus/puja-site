@@ -19,14 +19,14 @@ module ApplicationHelper
       "Enjoy the comfort of the lovely cabins located near the sea. Each cabin
       can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom.
       Blankets and pillows are provided but you will have to bring sheets and towels
-      or rent on site for €10.<br>Cost: €108 + voluntary donation per person.",
+      or rent on site for €10.<br>Cost: €#{Registration::CABIN_COST} + voluntary donation per person.",
       places_left: Registration.cabin_places_left,
     )
     hostel_label = radio_with_hint(
       "Hostel",
       "Get a bed in one of the 11 available double rooms in the newly renovated
       hostel. Blankets and pillows are provided but you will have to bring sheets and towels
-      or rent on site for €10.<br>Cost: €140 + voluntary donation per person.",
+      or rent on site for €10.<br>Cost: €#{Registration::HOSTEL_COST} + voluntary donation per person.",
       places_left: Registration.hostel_places_left,
     )
     tent_label = radio_with_hint(
@@ -34,7 +34,7 @@ module ApplicationHelper
       "We will erect collective sleeping tents hosting around 100 yogis each.
       They will be heated so should be comfortable even if the nights get cold.
       Don't forget to bring sleeping bags and sleeping mats. You are also welcome
-      to bring your own tent.<br>Cost: €55 + voluntary donation per person.",
+      to bring your own tent.<br>Cost: €#{Registration::TENT_COST} + voluntary donation per person.",
     )
 
     {

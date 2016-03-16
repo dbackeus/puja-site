@@ -3,6 +3,9 @@ class Registration < ApplicationRecord
   PHONE_REGEX = /\A\+|00/ # starts with country code
   TOTAL_CABIN_PLACES = 12 * 7
   TOTAL_HOSTEL_PLACES = 11 * 2
+  CABIN_COST = 108
+  HOSTEL_COST = 140
+  TENT_COST = 55
 
   has_many :participants, inverse_of: :registration, dependent: :delete_all
 
@@ -67,9 +70,9 @@ class Registration < ApplicationRecord
 
   def accommodation_cost
     {
-      "cabin" => 108,
-      "hostel" => 140,
-      "tent" => 55,
+      "cabin" => CABIN_COST,
+      "hostel" => HOSTEL_COST,
+      "tent" => TENT_COST,
     }
   end
 
