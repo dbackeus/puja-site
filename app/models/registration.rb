@@ -34,6 +34,10 @@ class Registration < ApplicationRecord
     total_cost * 100
   end
 
+  def total_cost_in_öre
+    (total_cost_in_cents * 9.2235).round
+  end
+
   def minimum_cost
     participants.sum(&:cost)
   end

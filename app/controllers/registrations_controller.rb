@@ -40,9 +40,9 @@ class RegistrationsController < ApplicationController
 
       charge = Stripe::Charge.create(
         customer: customer.id,
-        amount: @registration.total_cost_in_cents,
+        amount: @registration.total_cost_in_öre,
         description: "Payment for registration: #{@registration.to_param}",
-        currency: "EUR",
+        currency: "SEK",
       )
 
       @registration.update_attributes!(
