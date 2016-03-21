@@ -35,7 +35,7 @@ class Registration < ApplicationRecord
   end
 
   def total_cost_in_öre
-    (total_cost_in_cents * ENV.fetch("SEK_CONVERSION_RATE").to_f).round
+    (total_cost_in_cents * FIXER_CLIENT.rate("SEK")).round
   end
 
   def minimum_cost
