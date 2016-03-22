@@ -84,6 +84,6 @@ module ApplicationHelper
   def radio_with_hint(label, hint, places_left: nil)
     extra_info = "- #{places_left} places left" if places_left
 
-    %(<strong>#{label}</strong> #{extra_info} <p class="help-block">#{hint}</p>).html_safe
+    %(<strong>#{label}</strong> #{extra_info} <p data-places-left="#{places_left}" class="help-block">#{hint}</p>).html_safe
   end
 end

@@ -1,5 +1,12 @@
 # nested forms inspired by http://davidlesches.com/blog/rails-nested-forms-using-jquery-and-simpleform
 
+disableFullyBookedOptions = ->
+  $(".registration_accommodation .radio").each ->
+    $formGroup = $(@)
+
+    if parseInt($(@).find("[data-places-left]").data("placesLeft")) <= 0
+      $formGroup.find("input").attr("disabled", true)
+
 removeParticipant = (e) ->
   e.preventDefault()
 
@@ -9,6 +16,8 @@ addRemoveParticipantClickHandler = ->
   $(".remove-participant").click removeParticipant
 
 ready = ->
+  disableFullyBookedOptions()
+
   addRemoveParticipantClickHandler()
 
   if $('.duplicatable_nested_form').length
