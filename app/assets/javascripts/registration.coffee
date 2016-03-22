@@ -39,6 +39,8 @@ ready = ->
 
     $("#participants").append(newNestedForm)
 
+    $(newNestedForm).find(".registration_participants_name input").focus()
+
     addRemoveParticipantClickHandler()
 
 $(document).ready(ready)
