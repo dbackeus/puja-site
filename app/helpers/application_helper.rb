@@ -16,10 +16,11 @@ module ApplicationHelper
   def accommodation_options
     cabin_label = radio_with_hint(
       "Cabin",
-      "Enjoy the comfort of the lovely cabins located near the sea. Each cabin
+      "Enjoy the comfort of the cabins located near the sea. Each cabin
       can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom.
       Blankets and pillows are provided but you will have to bring sheets and towels
-      or rent on site for €10.<br>Cost: €#{Registration::CABIN_COST} + voluntary donation per person.",
+      or rent on site for €10. <b>Please consider leaving the limited cabin spaces for senior yogis if you
+      can manage staying in the normal collective sleeping tents</b>.<br>Cost: €#{Registration::CABIN_COST} + voluntary donation per person.",
       places_left: Registration.cabin_places_left,
     )
     hostel_label = radio_with_hint(
