@@ -9,6 +9,9 @@
         <th>Reference</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Paid</th>
+        <th>Comment</th>
+        <th>Transport</th>
       </thead>
       <tbody>
         <% @participants.each do |participant| %>
@@ -21,6 +24,9 @@
             <td><%= registration.token %></td>
             <td><%= registration.email %></td>
             <td><%= registration.phone %></td>
+            <td><%= registration.paid? %></td>
+            <td><%= registration.comment %></td>
+            <td><%= registration.transport? %></td>
           </tr>
         <% end %>
       </tbody>
