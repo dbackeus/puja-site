@@ -51,7 +51,9 @@ class Registration < ApplicationRecord
   end
 
   def extra_per_participant
-    extra / participants.select(&:applicable_for_donation?).length
+    number_of_donators = participants.select(&:applicable_for_donation?).length
+
+    number_of_donators.zero? ? 0 : extra / number_of_donators
   end
 
   def extra_per_participant=(value)
