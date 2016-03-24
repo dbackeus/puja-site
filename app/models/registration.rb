@@ -17,6 +17,7 @@ class Registration < ApplicationRecord
   validates_format_of :phone, with: PHONE_REGEX, message: "Must be a valid international phone number (including country code denoted by + or 00)"
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
+  validate :validate_at_least_one_participant
 
   def self.cabin_places_left
     TOTAL_CABIN_PLACES - Participant.count_for_accommodation("cabin")
@@ -73,6 +74,10 @@ class Registration < ApplicationRecord
   end
 
   private
+
+  def validate_at_least_one_participant
+    errors.add(:base, "you need to register at least one participant") if participants.none?
+  end
 
   def accommodation_cost
     {

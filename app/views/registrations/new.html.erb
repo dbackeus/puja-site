@@ -5,6 +5,11 @@
   <div class="container">
     <section>
       <%= simple_form_for @registration do |f| %>
+        <% if @registration.errors[:base].any? %>
+          <div class="alert alert-danger">
+            <%= @registration.errors.messages[:base].to_sentence.capitalize %>.
+          </div>
+        <% end %>
         <%= f.input :registration_type, as: :hidden %>
         <h3>Contact information</h3>
         <%= f.input :email, hint: "Booking confirmation and payment link will be sent to this email." %>
