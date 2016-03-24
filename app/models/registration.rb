@@ -48,7 +48,7 @@ class Registration < ApplicationRecord
   end
 
   def extra
-    read_attribute(:extra) || participants.select(&:applicable_for_donation?).length * 30
+    (read_attribute(:extra) || participants.select(&:applicable_for_donation?).length * 30).to_i
   end
 
   def extra_per_participant
