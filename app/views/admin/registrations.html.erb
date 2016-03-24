@@ -12,6 +12,7 @@
         <th>Paid</th>
         <th>Comment</th>
         <th>Transport</th>
+        <th>Country</th>
       </thead>
       <tbody>
         <% @participants.each do |participant| %>
@@ -27,6 +28,7 @@
             <td><%= registration.paid? %></td>
             <td><%= registration.comment %></td>
             <td><%= registration.transport? %></td>
+            <td><%= registration.country %></td>
           </tr>
         <% end %>
       </tbody>
