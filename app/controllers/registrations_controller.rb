@@ -13,7 +13,9 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @registration = Registration.new(registration_params)
+    @registration = Registration.new(
+      registration_params.merge(ip_address: request.remote_ip)
+    )
 
     if @registration.save
       RegistrationMailer.registered(@registration).deliver
