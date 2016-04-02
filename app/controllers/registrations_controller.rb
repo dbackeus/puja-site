@@ -59,10 +59,9 @@ class RegistrationsController < ApplicationController
 
     redirect_to registration_path(@registration), notice: "Your payment was successfully charged! A receipt has been sent to <strong>#{@registration.email}</strong>."
   rescue Stripe::CardError => e
-    Rails.logger.warn "Payment failed:"
-    Rails.logger.warn e.message
+    Rails.logger.warn "Payment failed: #{e.message}"
     @registration.update_attribute(:stripe_token, registration_params[:stripe_token])
-    redirect_to registration_path(@registration), error: e.message
+    redirect_to registration_path(@registration), alert: "<p><b>Credit card payment failed</b>.</p><p>The error message given was: <i>#{e.message}</i></p><p>If you can not make the payment work with credit card you may consider paying with international bank transfer (see instructions at the bottom of this page).</p>"
   end
 
   private

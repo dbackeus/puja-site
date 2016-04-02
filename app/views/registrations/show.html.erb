@@ -8,9 +8,9 @@
           <%= flash[:notice].html_safe %>
         </div>
       <% end %>
-      <% if flash[:error].present? %>
+      <% if flash[:alert].present? %>
         <div class="alert alert-danger">
-          <%= flash[:error].html_safe %>
+          <%= flash[:alert].html_safe %>
         </div>
       <% end %>
       <h2>Your Registration</h2>
