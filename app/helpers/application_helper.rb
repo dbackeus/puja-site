@@ -33,15 +33,15 @@ module ApplicationHelper
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
       "We will erect collective sleeping tents hosting around 100 yogis each.
-      They will be heated so should be comfortable even if the nights get cold.
+      They will be heated so will be comfortable even if the nights get cold.
       Don't forget to bring sleeping bags and sleeping mats. You are also welcome
       to bring your own tent.<br>Cost: €#{Registration::TENT_COST} + voluntary donation per person.",
     )
 
     {
+      tent_label => "tent",
       cabin_label => "cabin",
       hostel_label => "hostel",
-      tent_label => "tent",
     }
   end
 
