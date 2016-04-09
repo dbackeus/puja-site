@@ -92,7 +92,11 @@ module ApplicationHelper
   private
 
   def radio_with_hint(label, hint, places_left: nil)
-    extra_info = "- #{places_left} places left" if places_left
+    if places_left
+      extra_info = "- #{places_left} places left"
+    else
+      extra_info = "- Unlimited places"
+    end
 
     hint = "Not available due to being fully booked." if places_left && places_left <= 0
 
