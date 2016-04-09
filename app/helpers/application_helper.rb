@@ -14,22 +14,6 @@ module ApplicationHelper
   end
 
   def accommodation_options
-    cabin_label = radio_with_hint(
-      "Cabin",
-      "Enjoy the comfort of the cabins located near the sea. Each cabin
-      can host 7 people, 2 in a king size bedroom, 2 in a bunk bed bedroom and 3 in a upstairs bedroom.
-      Blankets and pillows are provided but you will have to bring sheets and towels
-      or rent on site for €10. <b>Please consider leaving the limited cabin spaces for senior yogis if you
-      can manage staying in the normal collective sleeping tents</b>.<br>Cost: €#{Registration::CABIN_COST} + voluntary donation per person.",
-      places_left: Registration.cabin_places_left,
-    )
-    hostel_label = radio_with_hint(
-      "Hostel",
-      "Get a bed in one of the 11 available double rooms in the newly renovated
-      hostel. Blankets and pillows are provided but you will have to bring sheets and towels
-      or rent on site for €10.<br>Cost: €#{Registration::HOSTEL_COST} + voluntary donation per person.",
-      places_left: Registration.hostel_places_left,
-    )
     tent_label = radio_with_hint(
       "Collective Sleeping Tents",
       "We will erect collective sleeping tents hosting around 100 yogis each.
@@ -37,11 +21,36 @@ module ApplicationHelper
       Don't forget to bring sleeping bags and sleeping mats. You are also welcome
       to bring your own tent.<br>Cost: €#{Registration::TENT_COST} + voluntary donation per person.",
     )
+    cabin_label = radio_with_hint(
+      "Cabin",
+      "Each cabin can host 7 people, 2 in a king size bedroom, 2 in a bunk bed
+      bedroom and 3 in a upstairs bedroom.
+      Blankets and pillows are provided but you will have to bring sheets and towels
+      or rent on site for €10.<br>Cost: €#{Registration::CABIN_COST} + voluntary donation per person.",
+      places_left: Registration.cabin_places_left,
+    )
+    hostel_label = radio_with_hint(
+      "Hostel",
+      "Get a bed in one of the 11 available double rooms in the hostel.
+      Blankets and pillows are provided but you will have to bring sheets and towels
+      or rent on site for €10.<br>Cost: €#{Registration::HOSTEL_COST} + voluntary donation per person.",
+      places_left: Registration.hostel_places_left,
+    )
+    hotel_label = radio_with_hint(
+      "Nearby hotel",
+      "Due to cabins and hostels on site getting fully booked we have arranged
+      some places in nearby hotels/cabins/b&b's for those not able to stay in the
+      collective tents. The places will be within a 2km radius from the puja site
+      and we will arrange transport in case you are not able to rent a car yourself.
+      <br>Cost: €#{Registration::HOTEL_COST} + volontary donation per person.",
+      places_left: Registration.hotel_places_left,
+    )
 
     {
       tent_label => "tent",
       cabin_label => "cabin",
       hostel_label => "hostel",
+      hotel_label => "hotel",
     }
   end
 
@@ -84,6 +93,8 @@ module ApplicationHelper
 
   def radio_with_hint(label, hint, places_left: nil)
     extra_info = "- #{places_left} places left" if places_left
+
+    hint = "Not available due to being fully booked." if places_left && places_left <= 0
 
     %(<strong>#{label}</strong> #{extra_info} <p data-places-left="#{places_left}" class="help-block">#{hint}</p>).html_safe
   end
