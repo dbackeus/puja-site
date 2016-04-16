@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
   def new
     @registration = Registration.new(
       registration_type: "group",
-      country: request.location.try(:country),
+      country: country_from_ip,
     )
     @registration.participants.build
     @registration.participants.build # last will be removed
@@ -65,6 +65,13 @@ class RegistrationsController < ApplicationController
   end
 
   private
+
+  def country_from_ip
+    request.location.country
+  rescue => e
+    Rollbar.error(e)
+    nil
+  end
 
   def registration_params
     params.require(:registration).permit!
