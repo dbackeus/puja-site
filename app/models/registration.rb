@@ -3,7 +3,7 @@ class Registration < ApplicationRecord
   PHONE_REGEX = /\A\+|00/ # starts with country code
   TOTAL_CABIN_PLACES = 12 * 7
   TOTAL_HOSTEL_PLACES = 11 * 2
-  TOTAL_HOTEL_PLACES = 30
+  TOTAL_HOTEL_PLACES = 30 + 8 # Rovor & Rum + Villa
   CABIN_COST = 108
   HOSTEL_COST = 140
   TENT_COST = 55
