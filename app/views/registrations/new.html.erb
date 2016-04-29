@@ -66,12 +66,13 @@
         <hr>
         <h3>Transportation</h3>
         <p>
-          Since we have limited number of cars and drivers available for pickup we kindly ask
-          you to evaluate using public transport to reach the puja site as outlined on the
-         <%= link_to "travel section", "#{root_path}#travel", target: "_blank" %> of our main page.
-          However if you prefer to be picked at the airport, please tick the checkbox below and we'll email you the details.
+          We will rent busses to help bring people from the airport to the puja site.
+          The cost will be around €15-20 per person (per route). Please tick the box below
+          and we'll get back to you asking for details about your arrival/departure times.
+          If you are want to read up on other ways of getting to the puja site please look at the
+          <%= link_to "travel section", "#{root_path}#travel", target: "_blank" %> of our main page.
         </p>
-        <%= f.input :transport, as: :boolean, label: "Yes, I need yogi transport from the airport" %>
+        <%= f.input :transport, as: :boolean, label: "Yes, I would like yogi transport from the airport" %>
         <hr>
         <h3>Comment</h3>
         <p>
