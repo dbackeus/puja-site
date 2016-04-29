@@ -1,0 +1,22 @@
+<p>
+  Dear participant,
+</p>
+<p>
+  We have now prepared a form on your Adi Shakti Puja registration page
+  where you can add details for your arrival and departure flights so that
+  we can prepare your transportation.
+</p>
+<p>
+  Find your registration page at:<br>
+  <%= link_to registration_url(@registration), registration_url(@registration) %>
+</p>
+<% unless @registration.paid? %>
+  <p>
+    Note that since you have not yet paid for your registration you must
+    do so before you can can fill in your transportation info.
+  </p>
+<% end %>
+<p>
+  With love,<br>
+  Adi Shakti Puja Transportation Team
+</p>

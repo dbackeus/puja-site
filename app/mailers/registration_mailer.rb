@@ -4,6 +4,16 @@ class RegistrationMailer < ApplicationMailer
     reply_to: "adishaktipuja+registration@gmail.com",
   )
 
+  def transport_update(registration)
+    @registration = registration
+
+    mail(
+      to: registration.email,
+      subject: "Adi Shakti Puja 2016: Transportation Update",
+      bcc: ["duztdruid@gmail.com"],
+    )
+  end
+
   def registered(registration)
     @registration = registration
 
