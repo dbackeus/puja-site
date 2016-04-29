@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325103623) do
+ActiveRecord::Schema.define(version: 20160429114900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,18 +32,22 @@ ActiveRecord::Schema.define(version: 20160325103623) do
     t.string   "phone"
     t.boolean  "transport"
     t.string   "country"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "accommodation"
     t.string   "registration_type"
     t.float    "extra"
-    t.boolean  "paid",               default: false, null: false
+    t.boolean  "paid",                default: false, null: false
     t.string   "stripe_customer_id"
     t.string   "stripe_charge_id"
     t.string   "stripe_token"
     t.string   "token"
     t.text     "comment"
     t.string   "ip_address"
+    t.datetime "arrival_at"
+    t.datetime "departure_at"
+    t.string   "arrival_flight_no"
+    t.string   "departure_flight_no"
   end
 
   add_index "registrations", ["token"], name: "index_registrations_on_token", unique: true, using: :btree

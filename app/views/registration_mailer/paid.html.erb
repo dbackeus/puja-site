@@ -2,8 +2,16 @@
 
 <p>
   Your payment of <strong>€<%= @registration.total_cost %>.00</strong> was received
-  and your registration is now completed.
+  and your registration is now confirmed.
 </p>
+
+<% if @registration.transport? %>
+  <p>
+    Since you registered for transport you may now enter your transport details
+    at the bottom of your registrations page:<br>
+    <%= link_to registration_url(@registration), registration_url(@registration) %>
+  </p>
+<% end %>
 
 <p>
   We're looking forward to seeing you in Sweden!

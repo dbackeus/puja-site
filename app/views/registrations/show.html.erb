@@ -50,11 +50,45 @@
         </p>
         <% if @registration.transport? %>
           <hr>
-          <h3>Transport</h3>
+          <h3>Transport Details</h3>
           <p>
-            You requested transport assistance from the airport. We will contact you regarding this
-            via email within about a month of the puja.
+            You requested transport assistance from the airport. Please fill in your
+            travel details using the form below. If you are not certain of your flight
+            number at this time then you can start by filling out the times and add flight number
+            later.
           </p>
+          <%= simple_form_for @registration do |f| %>
+            <div class="row">
+              <div class="col-sm-6">
+                <%= f.input :arrival_at,
+                  label: "Time of Arrival",
+                  default: Registration::DEFAULT_ARRIVAL_TIME,
+                  discard_year: true,
+                  minute_step: 5,
+                  input_html: { class: "auto-width" }
+                %>
+              </div>
+              <div class="col-sm-6">
+                <%= f.input :departure_at,
+                  label: "Time of Departure",
+                  default: Registration::DEFAULT_DEPARTURE_TIME,
+                  discard_year: true,
+                  minute_step: 5,
+                  input_html: { class: "auto-width" }
+                %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <%= f.input :arrival_flight_no, label: "Arrival Flight Number" %>
+              </div>
+              <div class="col-sm-6">
+                <%= f.input :departure_flight_no, label: "Departure Flight Number" %>
+              </div>
+            </div>
+            <%= f.button :submit, "Update transport details", class: "btn-primary" %>
+
+          <% end %>
         <% end %>
       <% else %>
         <p>

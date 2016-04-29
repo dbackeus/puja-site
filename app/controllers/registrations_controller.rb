@@ -27,6 +27,14 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def update
+    registration = Registration.find_by_token!(params[:id])
+
+    registration.update_attributes!(update_params)
+
+    redirect_to registration, notice: "Your registration was updated!"
+  end
+
   def pay
     @registration = Registration.find_by_token!(params[:id])
 
@@ -57,7 +65,8 @@ class RegistrationsController < ApplicationController
       RegistrationMailer.paid(@registration).deliver
     end
 
-    redirect_to registration_path(@registration), notice: "Your payment was successfully charged! A receipt has been sent to <strong>#{@registration.email}</strong>."
+    maybe_transport = "You may now fill in your transport details at the bottom of this page." if @registration.transport?
+    redirect_to registration_path(@registration), notice: "Your payment was successfully charged! A receipt has been sent to <strong>#{@registration.email}</strong>. #{maybe_transport}"
   rescue Stripe::CardError => e
     Rails.logger.warn "Payment failed: #{e.message}"
     @registration.update_attribute(:stripe_token, registration_params[:stripe_token])
@@ -65,6 +74,15 @@ class RegistrationsController < ApplicationController
   end
 
   private
+
+  def update_params
+    params.require(:registration).permit(
+      :arrival_at,
+      :departure_at,
+      :arrival_flight_no,
+      :departure_flight_no,
+    )
+  end
 
   def country_from_ip
     request.location.country

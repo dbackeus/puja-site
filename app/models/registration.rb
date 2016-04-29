@@ -1,4 +1,6 @@
 class Registration < ApplicationRecord
+  DEFAULT_ARRIVAL_TIME = Time.parse("2016-06-24 08:00")
+  DEFAULT_DEPARTURE_TIME = Time.parse("2016-06-27 10:00")
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   PHONE_REGEX = /\A\+|00/ # starts with country code
   TOTAL_CABIN_PLACES = 12 * 7
