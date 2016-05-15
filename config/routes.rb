@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "registrations"
+    get "transport"
   end
 
   resources :registrations do
