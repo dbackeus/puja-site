@@ -1,0 +1,26 @@
+<p>
+  Dear participant,
+</p>
+<p>
+  Here's a reminder that your booking for Shri Adi Shakti Puja has not
+  been confirmed as paid.
+</p>
+<p>
+  Please pay using your registration page:<br>
+  <%= link_to registration_url(@registration), registration_url(@registration) %>
+</p>
+<% if @registration.transport? %>
+  <p>
+    After paying you will be able fill in your transport details also.
+  </p>
+<% end %>
+<p>
+  If you would like to cancel your registration or have any questions regarding
+  your payment please let us know by replying to this email. We are about to place
+  the order for food for the puja and need to know how many people are actually
+  going to attend.
+</p>
+<p>
+  With all our love,<br>
+  Shri Adi Shakti Puja Team
+</p>
