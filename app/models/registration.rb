@@ -81,6 +81,10 @@ class Registration < ApplicationRecord
     token
   end
 
+  def phone=(value)
+    super value.to_s.sub(/^00/, "+")
+  end
+
   private
 
   def validate_at_least_one_participant
