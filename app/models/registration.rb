@@ -2,7 +2,7 @@ class Registration < ApplicationRecord
   DEFAULT_ARRIVAL_TIME = Time.parse("2016-06-17 08:00")
   DEFAULT_DEPARTURE_TIME = Time.parse("2016-06-20 10:00")
   EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  PHONE_REGEX = /\A\+|00/ # starts with country code
+  PHONE_REGEX = /\A(\+|00)/ # starts with country code
   TOTAL_CABIN_PLACES = 13 * 7
   TOTAL_HOSTEL_PLACES = 11 * 2
   TOTAL_HOTEL_PLACES = 30 + 8 # Rovor & Rum + Villa
