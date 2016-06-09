@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :donations do
+    collection do
+      get :scandinavia
+    end
+  end
+
   root to: "pages#home"
 
   get "/register", to: "registrations#new"

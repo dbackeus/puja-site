@@ -1,0 +1,38 @@
+<% @page_title = "Donations from Scandinavia" %>
+
+<div class="sub-page">
+  <div class="container">
+    <h1>Scandinavian donation page</h1>
+    <section>
+      <% if @donation.errors[:base].any? %>
+        <div class="alert alert-danger">
+          <%= @donation.errors.messages[:base].to_sentence.capitalize %>.
+        </div>
+      <% end %>
+
+      <%= simple_form_for @donation, html: { id: "payment-form" } do |f| %>
+        <%= f.input :stripe_token, as: :hidden %>
+        <%= f.input :amount, placeholder: "", hint: "Please enter a fixed amount in EUR. Anything from €5 to €1000 will be greatly appreciated." %>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <span
+          id="stripe-configuration"
+          data-key="<%= ENV.fetch('STRIPE_PUBLISHABLE_KEY') %>"
+          data-image="<%= asset_path "vishwa-nirmala-dharma.jpg" %>"
+          data-email="adishaktipuja+scandinavia@gmail.com"
+        ></span>
+      <% end %>
+      <%= link_to "Donate with card", "#", id: "pay-button", class: "btn btn-primary btn-lg" %>
+      <br><br>
+      <hr>
+      <p><b>Prefer not to donate with card?</b></p>
+      <p>
+        You may also donate via international bank transfer using the following details:
+      </p>
+      <p>
+        Account holder: SAHAJA YOGA SWEDEN<br>
+        IBAN: SE75 9500 0099 6042 6249 5270<br>
+        BIC (or SWIFT): NDEASESS<br>
+      </p>
+    </section>
+  </div>
+</div>
