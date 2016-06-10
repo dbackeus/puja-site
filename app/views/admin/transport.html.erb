@@ -1,47 +1,67 @@
 <div class="container">
   <div class="row">
-    <h1>Known registrations</h1>
+    <h1>Registrations with transport data</h1>
     <table class="table table-striped table-sortable">
       <thead>
+        <th>Token</th>
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
         <th>Participants</th>
         <th>Arrival</th>
         <th>Departure</th>
-        <th>Flight numbers</th>
+        <th>Arrival Flight no</th>
+        <th>Departure Flight no</th>
+        <th>Country</th>
+        <th>Comment</th>
       </thead>
       <tbody>
         <% @registrations.each do |registration| %>
           <tr>
+            <td><%= link_to registration.token, registration_path(registration) %></td>
             <td><%= registration.participants.first.name %></td>
-            <td><%= registration.phone %></td>
+            <td>'<%= registration.phone %></td>
             <td><%= registration.email %></td>
             <td><%= registration.participants.length %></td>
             <td><%= registration.arrival_at %></td>
             <td><%= registration.departure_at %></td>
-            <td><%= registration.arrival_flight_no %> / <%= registration.departure_flight_no %></td>
+            <td><%= registration.arrival_flight_no %></td>
+            <td><%= registration.departure_flight_no %></td>
+            <td><%= registration.country %></td>
+            <td><%= registration.comment %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <%= simple_form_for :registrations, url: admin_mark_transports_as_registered_path  do |f| %>
+      <%= f.input "ids", as: :hidden, input_html: { value: @registrations.map(&:id) } %>
+      <%= f.button :submit, "Mark all registrations as exported", class: "btn-primary" %>
+    <% end %>
   </div>
   <div class="row">
-    <h1>Pending Registrations</h1>
+    <h1>Registrations without transport data</h1>
     <table class="table table-striped table-sortable">
       <thead>
+        <th>Token</th>
         <th>Name</th>
         <th>Phone</th>
         <th>Email</th>
         <th>Participants</th>
+        <th>Paid</th>
+        <th>Country</th>
+        <th>Registered at</th>
       </thead>
       <tbody>
         <% @pending_registrations.each do |registration| %>
           <tr>
+            <td><%= link_to registration.token, registration_path(registration) %></td>
             <td><%= registration.participants.first.name %></td>
             <td><%= registration.phone %></td>
             <td><%= registration.email %></td>
             <td><%= registration.participants.length %></td>
+            <td><%= registration.paid? %></td>
+            <td><%= registration.country %></td>
+            <td><%= registration.created_at %></td>
           </tr>
         <% end %>
       </tbody>

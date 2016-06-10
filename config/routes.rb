@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "registrations"
     get "transport"
+    post "mark_transports_as_registered"
   end
 
   resources :registrations do
