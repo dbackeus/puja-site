@@ -22,6 +22,7 @@ class Registration < ApplicationRecord
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
   validate :validate_at_least_one_participant
+  validate :validate_places_left
 
   def self.cabin_places_left
     TOTAL_CABIN_PLACES - Participant.count_for_accommodation("cabin")
@@ -89,6 +90,18 @@ class Registration < ApplicationRecord
 
   def validate_at_least_one_participant
     errors.add(:base, "you need to register at least one participant") if participants.none?
+  end
+
+  def validate_places_left
+    return unless Registration.respond_to?("#{accommodation}_places_left")
+
+    places_left = Registration.send("#{accommodation}_places_left")
+
+    if places_left - participants.length < 0
+      places_grammar = places_left == 1 ? "is only #{places_left} place" : "are only #{places_left} places"
+
+      errors.add(:base, "there #{places_grammar} left in the #{accommodation.pluralize} but you have #{participants.length} in your group")
+    end
   end
 
   def accommodation_cost
