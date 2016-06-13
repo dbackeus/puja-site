@@ -22,7 +22,7 @@ class Registration < ApplicationRecord
   validates_presence_of :accommodation, message: "You must select your desired type of accommodation."
   validates_presence_of :registration_type
   validate :validate_at_least_one_participant
-  validate :validate_places_left
+  validate :validate_places_left, on: :create
 
   def self.cabin_places_left
     TOTAL_CABIN_PLACES - Participant.count_for_accommodation("cabin")
