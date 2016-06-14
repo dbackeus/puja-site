@@ -86,6 +86,10 @@ class Registration < ApplicationRecord
     super value.to_s.sub(/^00/, "+")
   end
 
+  def transport_information?
+    arrival_at.present? || departure_at.present?
+  end
+
   private
 
   def validate_at_least_one_participant

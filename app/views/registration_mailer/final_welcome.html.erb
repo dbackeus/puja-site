@@ -1,0 +1,92 @@
+<h1>Welcome to Shri Adi Shakti Puja in Scandinavia!</h1>
+
+<p>Some general good to know information for your arrival.</p>
+
+<h2>Reception and Accommodation</h2>
+<p>When you arrive at the camping grounds please look for our registration
+desk to receive a welcoming leaflet containing the weekend program and information
+on how to find your place of accommodation.</p>
+
+<% unless @registration.paid? %>
+  <p>If you have not pre-paid your registration before arriving you will have
+  to pay cash on site. We would prefer payment in Swedish kronor, not EUR.
+  Please be patient if we're having trouble giving exact change in return since
+  we have mostly expected people to pre-pay. Hopefully we can work out
+  payments in nice even numbers.</p>
+<% end %>
+
+<h2>Transportation</h2>
+<% if @registration.transport %>
+  <% if @registration.paid? || @registration.transport_information? %>
+    <% if @registration.transport_information? %>
+      <p>You have registered for our airport transport. After your arrival (if
+      you are expecting an airport pickup) please wait by café Ritazza near the
+      airport check in desks in the entrance area.</p>
+
+      <p>Maximum waiting time for pick up will be 2 hours but mostly
+      pick ups will be made within an hour. It can be helpful to wear Shri Matajis
+      pendant so we can recognize you easier. Also please announce your arrival
+      by sending an sms to +46 793 104463, the official transport phone number
+      and you will receive exact details of your pickup.</p>
+
+      <p>For your departure from the puja site back home you must get in touch with
+      the transportation team to confirm your journey. Look for the transportation
+      desk at the puja site. They can provide you with details of when and where
+      your departure transport will take place.</p>
+
+      <p>The cost of transport will be 150kr (about €15) per person per journey.
+      Children up to 12 years old will be free. All payments will have to be
+      done in cash. For smaller groups we will send vans driven by yogis, in those
+      cases payment can be done directly to the driver. For bigger groups we have ordered
+      bus transports, in those cases payments must be given to the transport team
+      at their desk at the puja site after your arrival.</p>
+    <% else %>
+      <p>You have registered for airport transport but you have not entered
+      your transportation details. You will have to do this on Wednesday at the latest
+      or you can not expect to receive a pickup on your arrival.</p>
+
+      <p>You may enter your transport details on your registration page:
+      <%= link_to registration_url(@registration), registration_url(@registration) %></p>
+    <% end %>
+  <% else %>
+    <p>You have registered for transportation but have not yet paid. Because of
+    this we have also not collected your transportation details. Do not
+    expect any pickup on arrival. If you are in need of pickup
+    you will have to pay and enter your details before Wednesday. If you cannot pre-pay
+    you have to email
+    <a href="mailto:adishaktipuja+transport@gmail.com">adishaktipuja+transport@gmail.com</a>
+    with all your flight details and the transport team will get back to you.</p>
+  <% end %>
+<% else %>
+<p>Since you have not registered for yogi pickup we're expecting that you
+come either by your own car or by public transport.</p>
+
+<p>To aid you finding a good route for public transport we recommend using
+the site http://www.vasttrafik.se/#!/en/ where you can enter your time
+and place of departure and then enter "Röavallen" as destination. This bus stop
+is located just next to the puja camping site, you will not miss it!</p>
+<% end %>
+
+<h2>Weather</h2>
+<p>The weather forecast is changing every day so it's hard to predict.
+We do see the occasional raincloud so you might want to come prepared :)</p>
+
+<h2>Cash at the puja site</h2>
+<p>Be aware that in general you can not pay with euros in Sweden. The currency is Swedish
+krona (SEK). You can expect all Swedish stores to accept visa / mastercards
+but you might want to carry some cash with you just in case. For example
+our on site Open Heart Café will not be able to accept payments with card.</p>
+
+<h2>With all our love</h2>
+<p>We can't wait to see you all here. With 3 days to go we still can't believe
+this is happening and can't imagine how it will all turn out in the weekend.</p>
+
+<p>Putting attention on it we just feel thoughtless and our hearts get filled
+with joy. We struggle to find the words to thank you for joining us
+and to our Holy Mother for bringing you to us.</p>
+
+<p>With all our love... can't wait to see you all!</p>
+
+<p>Jai Shri Mataji!</p>
+
+<p>The Puja Team</p>

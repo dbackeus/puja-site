@@ -43,4 +43,14 @@ class RegistrationMailer < ApplicationMailer
       bcc: ["duztdruid@gmail.com"],
     )
   end
+
+  def final_welcome(registration)
+    @registration = registration
+
+    mail(
+      to: registration.email,
+      subject: "Adi Shakti Puja 2016: Welcome to Scandinavia!",
+      bcc: ["duztdruid@gmail.com"],
+    )
+  end
 end
