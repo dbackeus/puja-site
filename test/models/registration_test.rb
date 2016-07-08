@@ -6,7 +6,7 @@ class RegistrationTest < ActiveSupport::TestCase
 
     registration.validate
 
-    assert_equal 32, registration.token.length
+    assert_equal 8, registration.token.length
   end
 
   ["", "0760 47 83 86"].each do |number|
