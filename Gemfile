@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.3.1"
 
 gem "bootstrap-sass"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails"
 gem "country_select"
 gem "dotenv-rails"
 gem "geocoder"
@@ -16,13 +16,13 @@ gem "mailgun_rails"
 gem "pg"
 gem "phone"
 gem "puma"
-gem "rails", ">= 5.0.0.beta3"
+gem "rails"
 gem "rollbar"
 gem "sassc-rails"
 gem "simple_form"
 gem "stripe"
 gem "therubyracer", platforms: :ruby
-gem "uglifier", ">= 1.3.0"
+gem "uglifier"
 
 group :development, :test do
   gem "byebug"
@@ -35,8 +35,8 @@ group :development do
   gem "terminal-notifier-guard", require: false
   gem "rb-fsevent"
   gem "spring"
-  gem "web-console", "~> 3.0"
-  gem "quiet_assets"
+  gem "web-console"
+  # gem "quiet_assets"
 end
 
 group :production do
