@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
   layout "admin"
 
-  http_basic_authenticate_with name: "lol", password: ""
+  http_basic_authenticate_with name: ENV.fetch("ADMIN_USERNAME"), password: ""
 
   def registrations
     @participants = Participant.all.order(:created_at).includes(:registration)
